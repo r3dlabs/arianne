@@ -705,28 +705,54 @@
     const profileAvatar = document.getElementById('profileAvatar');
     const favicon = document.getElementById('dynamic-favicon');
 
-    function applyAvatarImage(src) {
-      const headerImg = document.createElement('img');
-      headerImg.src = src;
-      headerImg.alt = '';
+    function makeCircularFavicon(image) {
+      if (!favicon) return;
 
-      const profileImg = document.createElement('img');
-      profileImg.src = src;
+      const size = 96;
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, size, size);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+
+      const scale = Math.max(size / image.naturalWidth, size / image.naturalHeight);
+      const drawWidth = image.naturalWidth * scale;
+      const drawHeight = image.naturalHeight * scale;
+      const dx = (size - drawWidth) / 2;
+      const dy = (size - drawHeight) / 2;
+      ctx.drawImage(image, dx, dy, drawWidth, drawHeight);
+      ctx.restore();
+
+      favicon.href = canvas.toDataURL('image/png');
+      favicon.type = 'image/png';
+    }
+
+    function applyAvatarImage(src, loadedImage) {
+      const headerImg = loadedImage.cloneNode(false);
+      headerImg.alt = '';
+      headerImg.decoding = 'async';
+
+      const profileImg = loadedImage.cloneNode(false);
       profileImg.alt = 'Arianne Mae Sunega Esparagoza';
+      profileImg.decoding = 'async';
 
       headerAvatar.textContent = '';
       profileAvatar.textContent = '';
       headerAvatar.appendChild(headerImg);
       profileAvatar.appendChild(profileImg);
 
-      if (favicon) {
-        favicon.href = src;
-        favicon.type = 'image/png';
-      }
+      makeCircularFavicon(loadedImage);
     }
 
     const testImage = new Image();
-    testImage.onload = () => applyAvatarImage(profileImagePath);
+    testImage.decoding = 'async';
+    testImage.onload = () => applyAvatarImage(profileImagePath, testImage);
     testImage.onerror = () => {
       headerAvatar.textContent = 'AE';
       profileAvatar.textContent = 'AE';
