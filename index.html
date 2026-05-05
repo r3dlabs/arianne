@@ -3,26 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frederick Esparagoza — Cloud Architect</title>
-<!-- Circular photo favicon — uses fred.png clipped to circle via SVG -->
-<link rel="icon" id="faviconLink" type="image/png" href="fred.png">
+<title>Arianne Esparagoza — Operations & Logistics</title>
+<link rel="icon" id="faviconLink" type="image/png" href="arianne.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --accent: #1a56e8;       /* sharp royal blue — primary accent */
-  --accent2: #0ea5c8;      /* teal — secondary accent */
-  --accent-light: #e8f0ff; /* soft blue tint for bg highlights */
-  --bg: #f7f8fa;
+  --accent: #0d9e8a;       /* deep teal — primary */
+  --accent2: #e05a2b;      /* warm coral — secondary */
+  --accent-light: #e6f7f5;
+  --bg: #f7f9f8;
   --surface: #ffffff;
-  --surface2: #f0f2f5;
-  --surface3: #e8ebf0;
-  --border: #d4d9e2;
-  --text: #0f1923;
-  --text2: #4a5568;
-  --muted: #8a96a8;
+  --surface2: #f0f5f4;
+  --surface3: #e4efed;
+  --border: #cdd9d6;
+  --text: #0f1e1c;
+  --text2: #3d5652;
+  --muted: #7a9490;
   --danger: #e03535;
-  --gold: #c8880a;         /* amber/gold — awards only */
+  --gold: #c8880a;
   --font-display: 'Bebas Neue', sans-serif;
   --font-mono: 'DM Mono', monospace;
   --font-body: 'DM Sans', sans-serif;
@@ -30,605 +29,315 @@
 
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
+body { font-family:var(--font-body); background:var(--bg); color:var(--text); overflow-x:hidden; line-height:1.6; }
 
-/* ── NOISE GRAIN ── */
 body::before {
-  content:'';
-  position:fixed; inset:0;
+  content:''; position:fixed; inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.015'/%3E%3C/svg%3E");
   pointer-events:none; z-index:9999;
 }
 
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width:4px; }
 ::-webkit-scrollbar-track { background:var(--bg); }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
 
 /* ── NAV ── */
 nav {
-  position: fixed; top:0; left:0; right:0; z-index:100;
+  position:fixed; top:0; left:0; right:0; z-index:100;
   display:flex; align-items:center; justify-content:space-between;
   padding:18px 48px;
-  background: rgba(247,248,250,.92);
+  background:rgba(247,249,248,.92);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   transition:all .3s;
 }
-.nav-links {
-  display:flex; gap:32px; list-style:none;
-}
+.nav-links { display:flex; gap:32px; list-style:none; }
 .nav-links a {
   font-family:var(--font-mono); font-size:11px; letter-spacing:1.5px;
-  color:var(--muted); text-decoration:none; text-transform:uppercase;
-  transition:color .2s;
+  color:var(--muted); text-decoration:none; text-transform:uppercase; transition:color .2s;
 }
 .nav-links a:hover { color:var(--accent); }
-.nav-cta {
-  font-family:var(--font-mono); font-size:10px; letter-spacing:1px;
-  color:#fff; background:var(--accent);
-  border:none; padding:8px 18px; border-radius:4px;
-  cursor:pointer; text-decoration:none;
-  transition:filter .2s;
-}
-.nav-cta:hover { filter:brightness(1.1); }
 
 /* ── HERO ── */
 #hero {
   min-height:100vh;
   background:var(--bg);
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:grid; grid-template-columns:1fr 1fr;
   align-items:center;
   padding:120px 80px 80px;
-  position:relative;
-  overflow:hidden;
-  gap:60px;
+  position:relative; overflow:hidden; gap:60px;
 }
-
 .hero-bg {
   position:absolute; inset:0;
   background:
-    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(26,86,232,.06) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 20% 30%, rgba(14,165,200,.05) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 70% at 70% 50%, rgba(13,158,138,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 15% 30%, rgba(224,90,43,.05) 0%, transparent 50%);
   pointer-events:none;
 }
-
 .hero-grid-lines {
   position:absolute; inset:0;
   background-image:
-    linear-gradient(rgba(26,86,232,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26,86,232,.06) 1px, transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
+    linear-gradient(rgba(13,158,138,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,158,138,.05) 1px, transparent 1px);
+  background-size:60px 60px; pointer-events:none;
 }
-
 .hero-left { position:relative; z-index:1; }
-
 .hero-tag {
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--font-mono); font-size:10px; letter-spacing:2px; color:var(--accent);
-  background:rgba(26,86,232,.08); border:1px solid rgba(26,86,232,.25);
+  background:rgba(13,158,138,.08); border:1px solid rgba(13,158,138,.25);
   padding:5px 12px; border-radius:20px; margin-bottom:24px;
 }
 .hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation:blink 1.5s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-
 .hero-name {
-  font-family:var(--font-display);
-  font-size:clamp(52px,7vw,96px);
-  line-height:.95;
-  letter-spacing:2px;
-  margin-bottom:8px;
+  font-family:var(--font-display); font-size:clamp(48px,6.5vw,88px);
+  line-height:.95; letter-spacing:2px; margin-bottom:8px;
 }
 .hero-name .accent { color:var(--accent); }
-
 .hero-title {
-  font-family:var(--font-mono); font-size:14px; letter-spacing:3px;
-  color:var(--accent2); margin-bottom:24px;
-  text-transform:uppercase;
+  font-family:var(--font-mono); font-size:13px; letter-spacing:3px;
+  color:var(--accent2); margin-bottom:24px; text-transform:uppercase; min-height:20px;
 }
-
-.hero-desc {
-  font-size:16px; color:var(--text2); max-width:480px;
-  line-height:1.7; margin-bottom:40px;
-}
-
-.hero-stats {
-  display:flex; gap:40px; margin-bottom:40px;
-}
+.hero-desc { font-size:16px; color:var(--text2); max-width:480px; line-height:1.7; margin-bottom:40px; }
+.hero-stats { display:flex; gap:36px; margin-bottom:40px; flex-wrap:wrap; }
 .stat { display:flex; flex-direction:column; gap:4px; }
-.stat-val {
-  font-family:var(--font-display); font-size:36px;
-  color:var(--text); letter-spacing:2px; line-height:1;
-}
-.stat-val span { color:var(--accent); }
-.stat-label {
-  font-family:var(--font-mono); font-size:9px;
-  letter-spacing:2px; color:var(--muted); text-transform:uppercase;
-}
-
+.stat-val { font-family:var(--font-display); font-size:34px; color:var(--text); letter-spacing:2px; line-height:1; }
+.stat-val .accent { color:var(--accent); }
+.stat-label { font-family:var(--font-mono); font-size:9px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
 .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
 .btn-primary {
   font-family:var(--font-display); font-size:15px; letter-spacing:2px;
   background:var(--accent); color:#fff; border:none;
-  padding:14px 32px; border-radius:6px; cursor:pointer;
+  padding:13px 30px; border-radius:6px; cursor:pointer;
   text-decoration:none; transition:all .2s; display:inline-flex; align-items:center; gap:8px;
 }
-.btn-primary:hover { filter:brightness(1.1); transform:translateY(-2px); }
+.btn-primary:hover { filter:brightness(1.08); transform:translateY(-2px); }
 .btn-outline {
   font-family:var(--font-mono); font-size:10px; letter-spacing:2px;
   background:transparent; color:var(--text2);
-  border:1px solid var(--border); padding:14px 28px; border-radius:6px;
+  border:1px solid var(--border); padding:13px 24px; border-radius:6px;
   cursor:pointer; text-decoration:none; transition:all .2s;
   display:inline-flex; align-items:center; gap:8px;
 }
 .btn-outline:hover { border-color:var(--accent); color:var(--accent); }
 
-/* HERO RIGHT — Avatar card */
+/* HERO RIGHT */
 .hero-right { position:relative; z-index:1; display:flex; justify-content:center; }
-.avatar-card {
-  position:relative;
-  width:340px;
-}
+.avatar-card { position:relative; width:320px; }
 .avatar-frame {
-  width:100%; aspect-ratio:3/4;
-  border-radius:16px; overflow:hidden;
-  border:1px solid var(--border);
-  background:var(--surface2);
-  position:relative;
+  width:100%; aspect-ratio:3/4; border-radius:16px; overflow:hidden;
+  border:1px solid var(--border); background:var(--surface2); position:relative;
 }
-.avatar-frame img {
-  width:100%; height:100%; object-fit:cover; object-position:top center;
-  display:block;
-}
-.avatar-frame .av-fallback {
-  width:100%; height:100%;
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--font-display); font-size:120px; color:var(--muted);
+.avatar-frame img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
+.av-fallback {
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:110px; color:var(--muted);
   background:linear-gradient(135deg, var(--surface2) 0%, var(--surface3) 100%);
 }
 .avatar-glow {
-  position:absolute; inset:-1px;
-  border-radius:16px;
-  background:linear-gradient(135deg, rgba(26,86,232,.12) 0%, rgba(14,165,200,.08) 100%);
+  position:absolute; inset:-1px; border-radius:16px;
+  background:linear-gradient(135deg, rgba(13,158,138,.12) 0%, rgba(224,90,43,.08) 100%);
   pointer-events:none;
 }
-
-/* Logo initial fallback */
-.logo-init {
-  font-family:var(--font-display); font-size:13px; letter-spacing:.5px;
-  color:#fff; text-align:center; line-height:1;
-  display:flex; align-items:center; justify-content:center;
-  width:100%; height:100%;
+.badge {
+  position:absolute; background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px;
+  box-shadow:0 8px 28px rgba(0,0,0,.12); backdrop-filter:blur(10px);
 }
-.cert-logo .logo-init { font-size:11px; }
+.badge-icon { font-size:20px; }
+.badge-text { display:flex; flex-direction:column; gap:1px; }
+.badge-val { font-family:var(--font-display); font-size:17px; color:var(--accent); line-height:1; }
+.badge-sub { font-family:var(--font-mono); font-size:8px; color:var(--muted); letter-spacing:1px; }
+.badge-1 { top:-14px; left:-36px; }
+.badge-2 { bottom:70px; right:-36px; }
+.badge-3 { bottom:-14px; left:-8px; }
+.badge-3 .badge-val { color:var(--accent2); }
 
-/* ── SECTION BASE ── */
-section { padding:100px 80px; }
-.section-header { margin-bottom:60px; }
+/* ── SECTIONS ── */
+section { padding:96px 80px; }
+.section-header { margin-bottom:56px; }
 .section-tag {
-  font-family:var(--font-mono); font-size:10px; letter-spacing:3px;
-  color:var(--accent); text-transform:uppercase; margin-bottom:12px;
+  font-family:var(--font-mono); font-size:10px; letter-spacing:3px; color:var(--accent);
+  text-transform:uppercase; margin-bottom:12px;
   display:flex; align-items:center; gap:10px;
 }
 .section-tag::before { content:''; width:24px; height:1px; background:var(--accent); }
-.section-title {
-  font-family:var(--font-display);
-  font-size:clamp(36px,5vw,56px);
-  letter-spacing:2px; line-height:1;
-  color:var(--text);
-}
+.section-title { font-family:var(--font-display); font-size:clamp(34px,4.5vw,52px); letter-spacing:2px; line-height:1; color:var(--text); }
 .section-title .accent { color:var(--accent); }
 
-/* ── ABOUT / SKILLS ── */
-#about {
-  background:var(--surface);
-  position:relative; overflow:hidden;
-}
+/* ── ABOUT ── */
+#about { background:var(--surface); position:relative; overflow:hidden; }
 #about::before {
-  content:'';
-  position:absolute; right:-200px; top:-200px;
+  content:''; position:absolute; right:-200px; top:-200px;
   width:600px; height:600px; border-radius:50%;
-  background:radial-gradient(circle, rgba(26,86,232,.05) 0%, transparent 70%);
-  pointer-events:none;
+  background:radial-gradient(circle, rgba(13,158,138,.05) 0%, transparent 70%); pointer-events:none;
 }
-
-.about-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:80px; align-items:start;
-}
-.about-text p {
-  font-size:16px; color:var(--text2); line-height:1.8; margin-bottom:20px;
-}
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+.about-text p { font-size:15px; color:var(--text2); line-height:1.8; margin-bottom:18px; }
 .about-text strong { color:var(--text); }
-
-/* Skill bars */
-.skills-grid { display:flex; flex-direction:column; gap:16px; }
-.skill-item { display:flex; flex-direction:column; gap:6px; }
-.skill-header {
-  display:flex; justify-content:space-between; align-items:center;
-}
-.skill-name { font-family:var(--font-mono); font-size:11px; letter-spacing:1px; color:var(--text2); }
-.skill-pct { font-family:var(--font-mono); font-size:10px; color:var(--muted); }
-.skill-bar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
-.skill-fill {
-  height:100%; border-radius:2px;
-  background:linear-gradient(90deg, var(--accent2), var(--accent));
-  transition:width 1.5s cubic-bezier(.4,0,.2,1);
-  width:0%;
-}
-.skill-fill.animated { width:var(--pct); }
-
-/* Skill tags */
-.skill-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+.skill-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
 .skill-tag {
   font-family:var(--font-mono); font-size:10px; letter-spacing:.5px;
-  color:var(--text2); background:var(--surface2);
-  border:1px solid var(--border); border-radius:4px;
-  padding:5px 10px; transition:all .2s;
+  color:var(--text2); background:var(--surface2); border:1px solid var(--border);
+  border-radius:4px; padding:5px 10px; transition:all .2s;
 }
 .skill-tag:hover { border-color:var(--accent); color:var(--accent); }
+.skills-grid { display:flex; flex-direction:column; gap:15px; }
+.skill-item { display:flex; flex-direction:column; gap:6px; }
+.skill-header { display:flex; justify-content:space-between; }
+.skill-name { font-family:var(--font-mono); font-size:11px; letter-spacing:.5px; color:var(--text2); }
+.skill-pct { font-family:var(--font-mono); font-size:10px; color:var(--muted); }
+.skill-bar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+.skill-fill { height:100%; border-radius:2px; background:linear-gradient(90deg, var(--accent), var(--accent2)); transition:width 1.5s cubic-bezier(.4,0,.2,1); width:0%; }
+.skill-fill.animated { width:var(--pct); }
 
 /* ── EXPERIENCE ── */
 #experience { background:var(--bg); }
-
 .timeline { position:relative; padding-left:40px; }
 .timeline::before {
   content:''; position:absolute; left:0; top:0; bottom:0;
   width:1px; background:linear-gradient(to bottom, var(--accent), var(--border), transparent);
 }
-
-.exp-item {
-  position:relative; margin-bottom:56px;
-}
+.exp-item { position:relative; margin-bottom:52px; }
 .exp-item::before {
   content:''; position:absolute; left:-43px; top:6px;
   width:7px; height:7px; border-radius:50%;
-  background:var(--accent); box-shadow:0 0 12px rgba(232,255,0,.5);
+  background:var(--accent); box-shadow:0 0 10px rgba(13,158,138,.45);
 }
-
-.exp-header {
-  display:flex; justify-content:space-between; align-items:flex-start;
-  margin-bottom:8px; gap:20px; flex-wrap:wrap;
-}
-.exp-title {
-  font-family:var(--font-display); font-size:22px;
-  letter-spacing:1.5px; color:var(--text); line-height:1.2;
-}
-.exp-company {
-  font-family:var(--font-mono); font-size:11px; letter-spacing:1px;
-  color:var(--accent2); margin-bottom:4px;
-}
-/* LinkedIn-style company row: logo + title/company stacked */
-.exp-co-row {
-  display:flex; align-items:center; gap:12px; margin-bottom:4px;
-}
+.exp-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; gap:20px; flex-wrap:wrap; }
+.exp-title { font-family:var(--font-display); font-size:21px; letter-spacing:1.5px; color:var(--text); line-height:1.2; }
+.exp-company { font-family:var(--font-mono); font-size:11px; letter-spacing:1px; color:var(--accent); margin-bottom:4px; }
+.exp-co-row { display:flex; align-items:center; gap:12px; margin-bottom:4px; }
 .exp-co-multi { gap:6px; }
-.co-logo {
-  width:40px; height:40px; border-radius:8px;
-  object-fit:contain; border:1px solid var(--border);
-  background:var(--surface2); padding:4px;
-  flex-shrink:0;
-}
+.co-logo { width:40px; height:40px; border-radius:8px; object-fit:contain; border:1px solid var(--border); background:var(--surface2); padding:4px; flex-shrink:0; }
 .exp-co-multi .co-logo { width:32px; height:32px; }
 .exp-left { flex:1; min-width:0; }
+.logo-init { font-family:var(--font-display); font-size:13px; letter-spacing:.5px; color:#fff; text-align:center; line-height:1; display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+.edu-logo .logo-init { font-size:14px; }
+.exp-location { font-family:var(--font-mono); font-size:9px; color:var(--muted); letter-spacing:.5px; }
 .exp-period {
   font-family:var(--font-mono); font-size:10px; letter-spacing:1px;
-  color:var(--muted); background:var(--surface);
-  border:1px solid var(--border); padding:4px 10px; border-radius:20px;
-  white-space:nowrap; flex-shrink:0;
+  color:var(--muted); background:var(--surface); border:1px solid var(--border);
+  padding:4px 10px; border-radius:20px; white-space:nowrap; flex-shrink:0;
 }
-.exp-desc {
-  font-size:14px; color:var(--text2); line-height:1.7;
-  max-width:680px; margin-bottom:16px;
+.exp-desc { font-size:14px; color:var(--text2); line-height:1.7; max-width:680px; margin-bottom:14px; }
+.exp-bullets { margin:0 0 14px 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.exp-bullets li {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:13px; color:var(--text2); line-height:1.6;
+}
+.exp-bullets li::before {
+  content:'→'; color:var(--accent); font-family:var(--font-mono); font-size:11px;
+  flex-shrink:0; margin-top:1px;
 }
 .exp-tags { display:flex; flex-wrap:wrap; gap:6px; }
 .exp-tag {
   font-family:var(--font-mono); font-size:9px; letter-spacing:.5px;
-  color:var(--muted); background:var(--surface2);
-  border:1px solid var(--border); padding:3px 8px; border-radius:3px;
+  color:var(--muted); background:var(--surface2); border:1px solid var(--border);
+  padding:3px 8px; border-radius:3px;
 }
+.highlight-card {
+  display:flex; align-items:flex-start; gap:12px;
+  background:linear-gradient(135deg, rgba(13,158,138,.07) 0%, rgba(224,90,43,.04) 100%);
+  border:1px solid rgba(13,158,138,.2); border-radius:8px;
+  padding:13px 16px; margin-bottom:14px;
+}
+.highlight-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.highlight-text { font-size:13px; color:var(--text2); line-height:1.5; }
+.highlight-text strong { color:var(--accent); }
 
-/* SoftwareONE achievement */
-.achievement-card {
-  display:flex; align-items:flex-start; gap:14px;
-  background:linear-gradient(135deg, rgba(26,86,232,.06) 0%, rgba(14,165,200,.04) 100%);
-  border:1px solid rgba(26,86,232,.25);
-  border-radius:8px; padding:14px 18px; margin-bottom:16px;
-}
-.ach-icon { font-size:20px; flex-shrink:0; margin-top:1px; }
-.ach-text { font-size:13px; color:var(--text2); line-height:1.5; }
-.ach-text strong { color:var(--gold); }
-
-/* ── SOLUTIONS BUILT ── */
-#solutions { background:var(--surface); }
-
-.solutions-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
-  gap:12px;
-}
-.solution-card {
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:8px; padding:14px 16px;
-  display:flex; align-items:flex-start; gap:10px;
-  transition:all .2s;
-}
-.solution-card:hover {
-  border-color:var(--accent2);
-  transform:translateY(-2px);
-  box-shadow:0 4px 20px rgba(0,212,255,.08);
-}
-.sol-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
-.sol-type { font-family:var(--font-mono); font-size:8px; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
-.sol-name { font-size:13px; color:var(--text2); font-weight:500; margin-top:2px; line-height:1.3; }
-
-/* ── TESTIMONIALS ── */
-#testimonials {
-  background:var(--bg);
-  position:relative; overflow:hidden;
-}
-#testimonials::before {
-  content:''; position:absolute; left:-300px; bottom:-300px;
-  width:800px; height:800px; border-radius:50%;
-  background:radial-gradient(circle, rgba(26,86,232,.04) 0%, transparent 60%);
-  pointer-events:none;
-}
-
-.testimonials-marquee {
-  overflow:hidden; position:relative;
-  margin:0 -80px;
-}
-.testimonials-track {
-  display:flex; gap:20px;
-  animation:marquee 40s linear infinite;
-  width:max-content;
-}
-.testimonials-track:hover { animation-play-state:paused; }
-@keyframes marquee {
-  from { transform:translateX(0); }
-  to { transform:translateX(-50%); }
-}
-
-.testimonial-card {
-  width:340px; flex-shrink:0;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:12px; padding:24px;
-  position:relative;
-}
-.testimonial-card::before {
-  content:'"';
-  position:absolute; top:12px; right:18px;
-  font-family:Georgia, serif; font-size:60px;
-  color:var(--border); line-height:1;
-}
-.test-quote {
-  font-size:13px; color:var(--text2); line-height:1.7;
-  margin-bottom:20px; font-style:italic;
-}
-.test-author {
-  display:flex; align-items:center; gap:10px;
-}
-.test-avatar {
-  width:36px; height:36px; border-radius:50%;
+/* ── EXPERTISE ── */
+#expertise { background:var(--surface); }
+.expertise-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.expertise-card {
   background:var(--surface2); border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--font-display); font-size:16px; color:var(--accent);
-  flex-shrink:0;
+  border-radius:10px; padding:20px; transition:all .2s;
 }
-.test-name {
-  font-family:var(--font-display); font-size:14px;
-  letter-spacing:1px; color:var(--text);
-}
-.test-role { font-family:var(--font-mono); font-size:9px; color:var(--muted); letter-spacing:.5px; }
-.test-value {
-  display:inline-flex; align-items:center; gap:4px;
-  font-family:var(--font-mono); font-size:8px; letter-spacing:1px;
-  color:var(--gold); background:rgba(240,192,64,.1);
-  border:1px solid rgba(240,192,64,.2); padding:2px 8px; border-radius:10px;
-  margin-top:6px;
-}
-
-/* ── AWARDS ── */
-#awards { background:var(--surface); }
-.awards-grid {
-  display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
-  gap:20px;
-}
-.award-card {
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:12px; padding:28px;
-  display:flex; flex-direction:column; gap:12px;
-  position:relative; overflow:hidden;
-  transition:all .25s;
-}
-.award-card:hover { transform:translateY(-4px); border-color:var(--gold); box-shadow:0 8px 32px rgba(200,136,10,.1); }
-.award-card::before {
-  content:''; position:absolute; top:0; right:0; bottom:0;
-  width:4px; background:linear-gradient(to bottom, var(--gold), transparent);
-}
-.award-icon { font-size:36px; }
-.award-title {
-  font-family:var(--font-display); font-size:18px;
-  letter-spacing:1.5px; color:var(--text); line-height:1.2;
-}
-.award-org { font-family:var(--font-mono); font-size:10px; letter-spacing:1px; color:var(--gold); }
-.award-year { font-family:var(--font-mono); font-size:9px; color:var(--muted); }
-.award-desc { font-size:13px; color:var(--text2); line-height:1.6; }
-
-/* ── CERTIFICATIONS ── */
-#certifications { background:var(--bg); }
-.cert-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:24px; }
-.cert-group {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:12px; padding:24px;
-}
-.cert-group-header {
-  display:flex; align-items:center; gap:14px; margin-bottom:20px;
-  padding-bottom:16px; border-bottom:1px solid var(--border);
-}
-.cert-logo {
-  width:42px; height:42px;
-  border-radius:8px; overflow:hidden;
-  background:var(--surface2);
-  display:flex; align-items:center; justify-content:center;
-  font-size:22px; flex-shrink:0;
-  position:relative;
-}
-.cert-logo img { width:88%; height:88%; object-fit:contain; display:block; }
-.cert-group-name {
-  font-family:var(--font-display); font-size:16px;
-  letter-spacing:1.5px; color:var(--text);
-}
-.cert-count { font-family:var(--font-mono); font-size:9px; color:var(--muted); }
-.cert-list { display:flex; flex-direction:column; gap:6px; }
-.cert-item {
-  display:flex; align-items:center; gap:8px;
-  font-size:12px; color:var(--text2); line-height:1.4;
-}
-.cert-item::before {
-  content:''; width:4px; height:4px; border-radius:50%;
-  background:var(--accent2); flex-shrink:0;
-}
+.expertise-card:hover { border-color:var(--accent); transform:translateY(-3px); box-shadow:0 6px 24px rgba(13,158,138,.1); }
+.exp-card-icon { font-size:28px; margin-bottom:10px; }
+.exp-card-title { font-family:var(--font-display); font-size:16px; letter-spacing:1.5px; color:var(--text); margin-bottom:6px; }
+.exp-card-desc { font-size:12px; color:var(--text2); line-height:1.5; }
 
 /* ── EDUCATION ── */
-#education { background:var(--surface); }
-.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+#education { background:var(--bg); }
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
 .edu-card {
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:12px; padding:28px;
-  display:flex; gap:20px;
-  transition:all .2s;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:12px; padding:26px; display:flex; gap:18px; transition:all .2s;
 }
 .edu-card:hover { border-color:var(--accent); transform:translateY(-2px); }
 .edu-logo {
-  width:56px; height:56px; flex-shrink:0;
-  border-radius:10px; overflow:hidden;
-  background:var(--surface);
-  display:flex; align-items:center; justify-content:center;
-  border:1px solid var(--border);
-  padding:5px;
+  width:52px; height:52px; flex-shrink:0; border-radius:10px; overflow:hidden;
+  background:var(--surface2); display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--border); font-size:24px; position:relative; padding:4px;
 }
 .edu-logo img { width:100%; height:100%; object-fit:contain; display:block; }
-.edu-logo .edu-emoji { font-size:26px; }
-.edu-content { flex:1; min-width:0; }
-.edu-degree { font-family:var(--font-display); font-size:16px; letter-spacing:1px; color:var(--text); margin-bottom:4px; line-height:1.3; }
-.edu-school { font-family:var(--font-mono); font-size:10px; letter-spacing:1px; color:var(--accent2); margin-bottom:4px; }
+.edu-degree { font-family:var(--font-display); font-size:15px; letter-spacing:1px; color:var(--text); margin-bottom:4px; line-height:1.3; }
+.edu-school { font-family:var(--font-mono); font-size:10px; letter-spacing:1px; color:var(--accent); margin-bottom:3px; }
 .edu-period { font-family:var(--font-mono); font-size:9px; color:var(--muted); }
 
 /* ── CONTACT ── */
-#contact {
-  background:var(--bg);
-  text-align:center;
-  position:relative; overflow:hidden;
-}
+#contact { background:var(--surface); text-align:center; position:relative; overflow:hidden; }
 #contact::before {
   content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(14,165,200,.04) 0%, transparent 70%);
+  background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(13,158,138,.06) 0%, transparent 70%);
   pointer-events:none;
 }
-.contact-content { position:relative; max-width:600px; margin:0 auto; }
+.contact-content { position:relative; max-width:580px; margin:0 auto; }
 .contact-email {
-  font-family:var(--font-display); font-size:clamp(24px,4vw,40px);
-  letter-spacing:2px; color:var(--text);
-  text-decoration:none; transition:color .2s;
-  display:block; margin:24px 0;
+  font-family:var(--font-display); font-size:clamp(22px,3.5vw,36px);
+  letter-spacing:2px; color:var(--text); text-decoration:none; transition:color .2s; display:block; margin:22px 0;
 }
 .contact-email:hover { color:var(--accent); }
-.contact-links { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:32px; }
+.contact-links { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:28px; }
 .contact-link {
   display:flex; align-items:center; gap:8px;
   font-family:var(--font-mono); font-size:10px; letter-spacing:1px;
-  color:var(--muted); background:var(--surface);
-  border:1px solid var(--border); padding:10px 20px; border-radius:6px;
-  text-decoration:none; transition:all .2s;
+  color:var(--muted); background:var(--surface2); border:1px solid var(--border);
+  padding:10px 18px; border-radius:6px; text-decoration:none; transition:all .2s;
 }
 .contact-link:hover { border-color:var(--accent); color:var(--accent); }
 
 /* ── FOOTER ── */
 footer {
-  background:var(--surface); border-top:1px solid var(--border);
-  padding:24px 80px;
-  display:flex; justify-content:space-between; align-items:center;
-  font-family:var(--font-mono); font-size:10px; color:var(--muted);
-  letter-spacing:.5px; flex-wrap:wrap; gap:12px;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width:900px) {
-  nav { padding:16px 24px; }
-  .nav-links { display:none; }
-  #navHamburger { display:block !important; }
-  section { padding:60px 24px; }
-  #hero { grid-template-columns:1fr; padding:100px 24px 60px; gap:40px; }
-  .hero-right { order:-1; }
-  .avatar-card { width:240px; }
-  .about-grid { grid-template-columns:1fr; gap:40px; }
-  .edu-grid { grid-template-columns:1fr; }
-  .hero-stats { flex-wrap:wrap; gap:24px; }
-  footer { padding:20px 24px; flex-direction:column; text-align:center; }
+  background:var(--surface2); border-top:1px solid var(--border);
+  padding:22px 80px; display:flex; justify-content:space-between; align-items:center;
+  font-family:var(--font-mono); font-size:10px; color:var(--muted); letter-spacing:.5px;
+  flex-wrap:wrap; gap:10px;
 }
 
 /* ── ANIMATIONS ── */
-.fade-in {
-  opacity:0; transform:translateY(24px);
-  transition:opacity .7s ease, transform .7s ease;
-}
+.fade-in { opacity:0; transform:translateY(22px); transition:opacity .65s ease, transform .65s ease; }
 .fade-in.visible { opacity:1; transform:translateY(0); }
 .fade-in-delay-1 { transition-delay:.1s; }
 .fade-in-delay-2 { transition-delay:.2s; }
 .fade-in-delay-3 { transition-delay:.3s; }
 
-/* President's Club highlight */
-.presidents-club {
-  display:inline-flex; align-items:center; gap:6px;
-  font-family:var(--font-mono); font-size:9px; letter-spacing:1.5px;
-  color:var(--gold); background:rgba(200,136,10,.1);
-  border:1px solid rgba(200,136,10,.3);
-  padding:4px 12px; border-radius:20px; margin-bottom:12px;
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  nav { padding:14px 20px; }
+  .nav-links { display:none; }
+  #navHamburger { display:block !important; }
+  section { padding:60px 22px; }
+  #hero { grid-template-columns:1fr; padding:100px 22px 56px; gap:36px; }
+  .hero-right { order:-1; }
+  .avatar-card { width:220px; }
+  .badge-1 { display:none; }
+  .about-grid { grid-template-columns:1fr; gap:36px; }
+  .edu-grid { grid-template-columns:1fr; }
+  footer { padding:18px 22px; flex-direction:column; text-align:center; }
 }
-.presidents-club::before { content:'★'; }
-
-/* Divider */
-.divider {
-  height:1px; background:linear-gradient(90deg, transparent, var(--border), transparent);
-  margin:40px 0;
-}
-
-/* Progress ring for skills */
-.skills-visual {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
-  margin-bottom:32px;
-}
-.skill-ring {
-  display:flex; flex-direction:column; align-items:center; gap:8px;
-}
-.ring-label { font-family:var(--font-mono); font-size:9px; letter-spacing:1px; color:var(--muted); text-align:center; }
-.ring-val { font-family:var(--font-display); font-size:20px; color:var(--accent2); }
 </style>
 </head>
 <body>
 
 <!-- ══ NAV ══ -->
-<nav>
+<nav id="mainNav">
   <ul class="nav-links" style="margin-left:0">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#solutions">Solutions</a></li>
-    <li><a href="#testimonials">Recognition</a></li>
-    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#expertise">Expertise</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -636,22 +345,21 @@ footer {
     <button id="navHamburger" style="display:none;background:none;border:1px solid var(--border);color:var(--text2);font-size:18px;padding:6px 10px;border-radius:6px;cursor:pointer;line-height:1">☰</button>
   </div>
 </nav>
+
 <!-- Mobile menu -->
-<div id="mobileMenu" style="display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:rgba(247,248,250,.98);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);flex-direction:column;padding:16px 24px;gap:0">
-  <a href="#about" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);text-transform:uppercase">About</a>
-  <a href="#experience" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Experience</a>
-  <a href="#solutions" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Solutions</a>
-  <a href="#testimonials" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Recognition</a>
-  <a href="#certifications" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Certifications</a>
-  <a href="#education" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Education</a>
-  <a href="#contact" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:14px 0;text-transform:uppercase">Contact</a>
+<div id="mobileMenu" style="display:none;position:fixed;top:58px;left:0;right:0;z-index:99;background:rgba(247,249,248,.98);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);flex-direction:column;padding:14px 22px;gap:0">
+  <a href="#about" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--border);text-transform:uppercase">About</a>
+  <a href="#experience" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Experience</a>
+  <a href="#expertise" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Expertise</a>
+  <a href="#education" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--border);text-transform:uppercase">Education</a>
+  <a href="#contact" style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--text2);text-decoration:none;padding:13px 0;text-transform:uppercase">Contact</a>
 </div>
 
 <!-- Floating availability badge -->
-<div style="position:fixed;bottom:24px;right:24px;z-index:90;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.95);border:1px solid rgba(26,86,232,.3);backdrop-filter:blur(12px);border-radius:30px;padding:8px 16px;box-shadow:0 4px 20px rgba(0,0,0,.5)">
+<div style="position:fixed;bottom:24px;right:24px;z-index:90;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.95);border:1px solid rgba(13,158,138,.3);backdrop-filter:blur(12px);border-radius:30px;padding:8px 16px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
   <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:block;animation:blink 1.5s infinite;flex-shrink:0"></span>
   <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:1.5px;color:var(--text2);text-transform:uppercase;white-space:nowrap">Open to Opportunities</span>
-  <a href="mailto:frederick.esparagoza@gmail.com" style="font-family:var(--font-mono);font-size:9px;letter-spacing:1px;color:var(--accent);text-decoration:none;margin-left:4px">→</a>
+  <a href="mailto:eld.arianne@gmail.com" style="font-family:var(--font-mono);font-size:9px;color:var(--accent);text-decoration:none;margin-left:4px">→</a>
 </div>
 
 <!-- ══ HERO ══ -->
@@ -662,49 +370,67 @@ footer {
   <div class="hero-left">
     <div class="hero-tag">Available for opportunities</div>
     <h1 class="hero-name">
-      FREDERICK<br>
+      ARIANNE<br>
       <span class="accent">ESPARAGOZA</span>
     </h1>
-    <div class="hero-title"><span id="heroSubtitle">Global Cloud Architect</span><span style="color:var(--accent);animation:blink .8s infinite">|</span></div>
+    <div class="hero-title"><span id="heroSubtitle">Operations Specialist</span><span style="color:var(--accent);animation:blink .8s infinite">|</span></div>
     <p class="hero-desc">
-      17+ years engineering cloud infrastructure at scale — from ideation through to production.
-      Architecting multi-cloud solutions across Azure &amp; AWS for enterprises worldwide.
-      <strong style="color:var(--text)">SoftwareONE President's Club 2022 winner.</strong>
+      15+ years building efficient supply chains and operations across Singapore's logistics, retail, and tech sectors. Currently bridging <strong>traditional operations with AI-powered solutions</strong> at Forward Labs.
     </p>
 
     <div class="hero-stats">
       <div class="stat">
-        <span class="stat-val" data-count="17" data-suffix="+">17+</span>
+        <span class="stat-val" data-count="15" data-suffix="+">15+</span>
         <span class="stat-label">Years Experience</span>
       </div>
       <div class="stat">
-        <span class="stat-val" data-count="26" data-suffix="+">26+</span>
-        <span class="stat-label">Solutions Built</span>
+        <span class="stat-val" data-count="80" data-suffix="+">80+</span>
+        <span class="stat-label">Clients Managed</span>
       </div>
       <div class="stat">
-        <span class="stat-val" data-count="20" data-suffix="+">20+</span>
-        <span class="stat-label">MS Certifications</span>
+        <span class="stat-val" data-count="10000" data-suffix="+">10K+</span>
+        <span class="stat-label">Products Handled</span>
       </div>
       <div class="stat">
-        <span class="stat-val" data-count="5">5</span>
-        <span class="stat-label">Cloud Platforms</span>
+        <span class="stat-val" data-count="9">9</span>
+        <span class="stat-label">Roles Across SG</span>
       </div>
     </div>
 
     <div class="hero-actions">
       <a href="#experience" class="btn-primary">↓ View Experience</a>
-      <a href="https://gg.linkedin.com/in/redesparagoza" target="_blank" class="btn-outline">in LinkedIn</a>
-      <a href="mailto:frederick.esparagoza@gmail.com" class="btn-outline">✉ Email</a>
+      <a href="mailto:eld.arianne@gmail.com" class="btn-outline">✉ Email Me</a>
     </div>
   </div>
 
   <div class="hero-right">
     <div class="avatar-card">
       <div class="avatar-frame">
-        <img src="fred.png" alt="Frederick Esparagoza"
+        <img src="arianne.png" alt="Arianne Esparagoza"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="av-fallback" style="display:none">F</div>
+        <div class="av-fallback" style="display:none">A</div>
         <div class="avatar-glow"></div>
+      </div>
+      <div class="badge badge-1">
+        <div class="badge-icon">🚢</div>
+        <div class="badge-text">
+          <div class="badge-val">Freight</div>
+          <div class="badge-sub">Sea · Air · Land</div>
+        </div>
+      </div>
+      <div class="badge badge-2">
+        <div class="badge-icon">🤖</div>
+        <div class="badge-text">
+          <div class="badge-val">AI Ops</div>
+          <div class="badge-sub">Prompt Engineering</div>
+        </div>
+      </div>
+      <div class="badge badge-3">
+        <div class="badge-icon">🌏</div>
+        <div class="badge-text">
+          <div class="badge-val" style="font-size:13px">Singapore</div>
+          <div class="badge-sub">Based In</div>
+        </div>
       </div>
     </div>
   </div>
@@ -714,96 +440,70 @@ footer {
 <section id="about">
   <div class="section-header fade-in">
     <div class="section-tag">01 — About</div>
-    <h2 class="section-title">Architect.<br><span class="accent">Builder.</span> Leader.</h2>
+    <h2 class="section-title">Operator.<br><span class="accent">Problem Solver.</span> Innovator.</h2>
   </div>
   <div class="about-grid">
     <div class="about-text fade-in">
       <p>
-        I'm a <strong>Global Cloud Services Architect</strong> with deep expertise spanning the full lifecycle of cloud solution delivery — from initial ideation and engineering through to productization, BAU operations, and continuous improvement.
+        I'm an <strong>Operations Specialist</strong> with over 15 years of experience across the full logistics spectrum — from inbound warehouse operations and customs compliance to multi-modal freight coordination and client success.
       </p>
       <p>
-        At SoftwareONE, I pioneered the <strong>Service Modularization concept</strong> — a framework that transformed how cloud services are designed, packaged and delivered. This work earned me recognition at the SoftwareONE President's Club in 2022, one of the company's highest performance awards.
+        Based in Singapore, I've worked with global brands including <strong>Secretlab, Heinemann Asia-Pacific, and Ryder-Ascent</strong>, managing supply chains that touch North America, Europe, and Asia Pacific. I've overseen everything from daily freight bookings for 80+ clients to processing documentation for 100+ suppliers with more than 10,000 products.
       </p>
       <p>
-        With hands-on experience across <strong>Azure, AWS, GCP, VMware, and hybrid cloud environments</strong>, I've led major cloud migrations for global enterprises in mining, banking, utilities, and transport sectors across Europe, Asia Pacific, and the Americas.
+        At Forward Labs, I've taken a leap into the future — <strong>testing AI tools, evaluating API integrations, and identifying where intelligent automation can transform operational workflows</strong>. I bring a rare combination of deep logistics expertise and genuine enthusiasm for emerging technology.
       </p>
       <p>
-        I combine deep technical architecture skills with a consulting mindset — engaging stakeholders, managing complex deliverables, and translating business requirements into scalable, secure, cost-optimized cloud solutions.
+        I hold a <strong>Diploma in Logistics Management</strong> from the Singapore Institute of Materials Management and a <strong>Bachelor of Science in Psychology</strong> from the University of Santo Tomas — a background that informs both my operational precision and my people-first approach to team and client relationships.
       </p>
       <div class="skill-tags">
-        <span class="skill-tag">Microsoft Azure</span>
-        <span class="skill-tag">Amazon AWS</span>
-        <span class="skill-tag">Hybrid Cloud</span>
-        <span class="skill-tag">IaaS / PaaS</span>
-        <span class="skill-tag">Cloud Migration</span>
-        <span class="skill-tag">Landing Zone Design</span>
-        <span class="skill-tag">Disaster Recovery</span>
-        <span class="skill-tag">FinOps / Cost Optimization</span>
-        <span class="skill-tag">IAM &amp; Security</span>
-        <span class="skill-tag">VMware VxBlock</span>
-        <span class="skill-tag">SCCM</span>
-        <span class="skill-tag">Service Modularization</span>
-        <span class="skill-tag">Stakeholder Management</span>
-        <span class="skill-tag">Project Delivery</span>
+        <span class="skill-tag">Freight Operations</span>
+        <span class="skill-tag">SAP WMS</span>
+        <span class="skill-tag">AI Testing</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">Inventory Management</span>
+        <span class="skill-tag">Customs & Compliance</span>
+        <span class="skill-tag">ASN Generation</span>
+        <span class="skill-tag">GST Bonds</span>
+        <span class="skill-tag">Import / Export</span>
+        <span class="skill-tag">3PL Coordination</span>
+        <span class="skill-tag">API Integration Testing</span>
+        <span class="skill-tag">Client Management</span>
+        <span class="skill-tag">Microsoft Office</span>
+        <span class="skill-tag">Google Workspace</span>
+        <span class="skill-tag">Reverse Logistics</span>
       </div>
     </div>
+
     <div class="fade-in fade-in-delay-1">
       <div class="skills-grid">
         <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Microsoft Azure</span>
-            <span class="skill-pct">98%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--pct:98%"></div></div>
+          <div class="skill-header"><span class="skill-name">Freight & Logistics Operations</span><span class="skill-pct">97%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:97%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Cloud Architecture &amp; Design</span>
-            <span class="skill-pct">96%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--pct:96%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Amazon Web Services</span>
-            <span class="skill-pct">88%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--pct:88%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Infrastructure (Compute / Network / Storage)</span>
-            <span class="skill-pct">95%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--pct:95%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Service Design &amp; Productization</span>
-            <span class="skill-pct">94%</span>
-          </div>
+          <div class="skill-header"><span class="skill-name">Inventory & Warehouse Management</span><span class="skill-pct">94%</span></div>
           <div class="skill-bar"><div class="skill-fill" style="--pct:94%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Security &amp; Compliance</span>
-            <span class="skill-pct">88%</span>
-          </div>
+          <div class="skill-header"><span class="skill-name">SAP & WMS Systems</span><span class="skill-pct">88%</span></div>
           <div class="skill-bar"><div class="skill-fill" style="--pct:88%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Stakeholder &amp; Client Engagement</span>
-            <span class="skill-pct">92%</span>
-          </div>
+          <div class="skill-header"><span class="skill-name">Customs & Compliance Documentation</span><span class="skill-pct">92%</span></div>
           <div class="skill-bar"><div class="skill-fill" style="--pct:92%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">VMware &amp; Private Cloud</span>
-            <span class="skill-pct">85%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--pct:85%"></div></div>
+          <div class="skill-header"><span class="skill-name">AI Tools & Prompt Engineering</span><span class="skill-pct">82%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Client & Stakeholder Management</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Process Analysis & Optimisation</span><span class="skill-pct">86%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:86%"></div></div>
         </div>
       </div>
     </div>
@@ -819,345 +519,254 @@ footer {
 
   <div class="timeline">
 
-    <!-- SoftwareONE -->
+    <!-- Forward Labs -->
     <div class="exp-item fade-in">
       <div class="exp-header">
-        <div class="exp-left">
-          <div class="exp-co-row">
-            <img class="co-logo" src="logos/softwareone.png" alt="SoftwareONE"
-              onerror="this.style.display='none'">
-            <div>
-              <div class="presidents-club">President's Club Winner 2022</div>
-              <div class="exp-title">Global Cloud Services Architect</div>
-              <div class="exp-company">SoftwareONE</div>
-            </div>
-          </div>
+        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="logos/forwardlabs.png" alt="Forward Labs" style="background:#0d9e8a" onerror="this.style.display='none'"><div><div class="exp-title">Operations Specialist</div>
+          <div class="exp-company">Forward Labs Pte. Ltd.</div></div></div>
+          <div class="exp-location">📍 Singapore</div>
         </div>
-        <div class="exp-period">Aug 2017 — Feb 2025</div>
+        <div class="exp-period">Jan 2024 — Present</div>
       </div>
-      <p class="exp-desc">Led end-to-end design, engineering, productization, BAU, and continuous improvement of 14+ cloud solutions and 13+ service modules across Azure and AWS. Invented the Service Modularization concept that became a company-wide delivery standard, earning President's Club recognition from the Executive Board.</p>
-      <div class="achievement-card">
-        <div class="ach-icon">🏆</div>
-        <div class="ach-text"><strong>President's Club 2022</strong> — Selected by SoftwareONE's President &amp; Member Executive Board for consistently modeling company engineering behaviours, breaking down complex problems, engaging broadly to validate solutions, and going the extra mile across all dimensions of work.</div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🤖</div>
+        <div class="highlight-text"><strong>Bridging Operations & AI</strong> — Currently at the frontier of intelligent automation, testing and evaluating AI tools and API integrations to enhance operational efficiency and transform how logistics workflows are managed.</div>
       </div>
+      <ul class="exp-bullets">
+        <li>Oversee daily sea, air, and land freight bookings for 80+ clients, ensuring timely and accurate deliveries across multiple modes.</li>
+        <li>Test and evaluate AI tools and API integrations, providing structured feedback to enhance operational efficiency.</li>
+        <li>Analyse client business processes end-to-end, identifying high-impact opportunities to integrate AI solutions for optimised performance.</li>
+      </ul>
       <div class="exp-tags">
-        <span class="exp-tag">Azure Architecture</span><span class="exp-tag">AWS</span><span class="exp-tag">Service Design</span><span class="exp-tag">Cloud Migration</span><span class="exp-tag">VMware on Cloud</span><span class="exp-tag">FinOps</span><span class="exp-tag">Well-Architected</span><span class="exp-tag">Product Management</span><span class="exp-tag">Landing Zone</span><span class="exp-tag">Modularization</span>
+        <span class="exp-tag">Freight Operations</span>
+        <span class="exp-tag">AI Testing</span>
+        <span class="exp-tag">API Integrations</span>
+        <span class="exp-tag">Prompt Engineering</span>
+        <span class="exp-tag">Process Analysis</span>
+        <span class="exp-tag">Client Management</span>
       </div>
     </div>
 
-    <!-- Accenture -->
+    <!-- Secretlab -->
     <div class="exp-item fade-in">
       <div class="exp-header">
-        <div class="exp-left">
-          <div class="exp-co-row">
-            <img class="co-logo" src="logos/accenture.png" alt="Accenture"
-              onerror="this.style.display='none'">
-            <div>
-              <div class="exp-title">Associate Manager — Infrastructure: Cloud Practice</div>
-              <div class="exp-company">Accenture</div>
-            </div>
-          </div>
+        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="logos/secretlab.png" alt="Secretlab" style="background:#e63946" onerror="this.style.display='none'"><div><div class="exp-title">Regional Support Associate — Freight</div>
+          <div class="exp-company">Secretlab SG Pte. Ltd.</div></div></div>
+          <div class="exp-location">📍 Singapore</div>
         </div>
-        <div class="exp-period">Sep 2015 — Jul 2017</div>
+        <div class="exp-period">Oct 2021 — May 2022</div>
       </div>
-      <p class="exp-desc">Delivered multiple Hybrid Cloud implementations for digital payments, banking, and global mining/resources companies. Led the largest SAP to Azure migration globally, designed multi-region IaaS environments across European and APAC Azure regions connected via Equinix ExpressRoute, and architected complex Disaster Recovery solutions.</p>
+      <ul class="exp-bullets">
+        <li>Monitored and updated shipment statuses for containers bound for North America, ensuring real-time visibility.</li>
+        <li>Prepared and validated invoices, packing lists, and customs documents for 5–20 containers daily.</li>
+        <li>Generated Advance Shipping Notices (ASNs) for third-party logistics providers to streamline incoming shipments.</li>
+        <li>Verified freight invoices and managed import and GST bonds for the Canada region.</li>
+      </ul>
       <div class="exp-tags">
-        <span class="exp-tag">SAP Migration</span><span class="exp-tag">Azure IaaS</span><span class="exp-tag">Hybrid Cloud</span><span class="exp-tag">Disaster Recovery</span><span class="exp-tag">ExpressRoute</span><span class="exp-tag">Multi-Region</span><span class="exp-tag">Project Management</span><span class="exp-tag">VMware VxBlock</span>
+        <span class="exp-tag">North America Freight</span>
+        <span class="exp-tag">Customs Documentation</span>
+        <span class="exp-tag">ASN Generation</span>
+        <span class="exp-tag">GST Bonds</span>
+        <span class="exp-tag">Invoice Verification</span>
+        <span class="exp-tag">3PL</span>
       </div>
     </div>
 
-    <!-- Huntsman -->
+    <!-- Heinemann -->
     <div class="exp-item fade-in">
       <div class="exp-header">
-        <div class="exp-left">
-          <div class="exp-co-row">
-            <img class="co-logo" src="logos/huntsman.png" alt="Huntsman"
-              onerror="this.style.display='none'">
-            <div>
-              <div class="exp-title">Operations Engineer — Global IT: Wintel Infrastructure</div>
-              <div class="exp-company">Huntsman Pte Ltd</div>
-            </div>
-          </div>
+        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="logos/heinemann.png" alt="Heinemann" style="background:#1a3a5c" onerror="this.style.display='none'"><div><div class="exp-title">Logistics Officer — Inbound</div>
+          <div class="exp-company">Heinemann Asia-Pacific Pte. Ltd.</div></div></div>
+          <div class="exp-location">📍 Singapore</div>
         </div>
-        <div class="exp-period">Aug 2014 — Sep 2015</div>
+        <div class="exp-period">Dec 2017 — Sep 2021</div>
       </div>
-      <p class="exp-desc">Administered Wintel infrastructure at scale — managing 100+ VMware ESXi hosts, 300+ Citrix servers, 1000+ Windows servers, and global backup infrastructure. Handled incident, change, and problem management.</p>
+      <div class="highlight-card">
+        <div class="highlight-icon">📦</div>
+        <div class="highlight-text"><strong>Enterprise Scale</strong> — Managed inbound logistics for <strong>100+ suppliers</strong> with over <strong>10,000 products</strong>, ensuring compliance with 3PL KPIs and resolving complex supply chain discrepancies.</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Supervised local and international shipments, processing documentation for 100+ suppliers with 10,000+ products.</li>
+        <li>Created ASNs and ensured full compliance with inbound KPIs for third-party logistics providers.</li>
+        <li>Resolved discrepancies in received goods including shortages, damages, and incorrect packaging.</li>
+        <li>Coordinated stock transfers and conducted bi-annual destruction and return-to-vendor processes.</li>
+        <li>Assisted with warehouse batch code checks and annual inventory audits.</li>
+      </ul>
       <div class="exp-tags">
-        <span class="exp-tag">VMware ESXi</span><span class="exp-tag">Citrix</span><span class="exp-tag">Netbackup</span><span class="exp-tag">ITSM</span>
+        <span class="exp-tag">Inbound Logistics</span>
+        <span class="exp-tag">Supplier Management</span>
+        <span class="exp-tag">ASN</span>
+        <span class="exp-tag">KPI Compliance</span>
+        <span class="exp-tag">Discrepancy Resolution</span>
+        <span class="exp-tag">Inventory Audit</span>
+        <span class="exp-tag">Stock Transfers</span>
       </div>
     </div>
 
-    <!-- Avanade -->
+    <!-- Ryder-Ascent Senior -->
     <div class="exp-item fade-in">
       <div class="exp-header">
-        <div class="exp-left">
-          <div class="exp-co-row">
-            <img class="co-logo" src="logos/avanade.png" alt="Avanade"
-              onerror="this.style.display='none'">
-            <div>
-              <div class="exp-title">Consultant — Technology Infrastructure</div>
-              <div class="exp-company">Avanade Asia Pte Ltd</div>
-            </div>
-          </div>
+        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="logos/ryderascent.png" alt="Ryder-Ascent" style="background:#2d6a4f" onerror="this.style.display='none'"><div><div class="exp-title">Senior Customer Service Officer</div>
+          <div class="exp-company">Ryder-Ascent Logistics Pte. Ltd.</div></div></div>
+          <div class="exp-location">📍 Singapore</div>
         </div>
-        <div class="exp-period">Dec 2011 — Apr 2014</div>
+        <div class="exp-period">Dec 2012 — Feb 2016</div>
       </div>
-      <p class="exp-desc">Delivered infrastructure readiness for a global organization with 50,000+ seats and 10+ acquired business units. Active Directory and Group Policy SME, platform engineering lead, and Operations Engineering Specialist Lead. Change Approval Board member.</p>
+      <ul class="exp-bullets">
+        <li>Handled order backlogs, urgent requests, and transportation for a global software company's supply chain.</li>
+        <li>Managed daily SAP inventory adjustments aligned with production schedules.</li>
+        <li>Facilitated reverse logistics, addressing customer retention through hardware scrap practices.</li>
+      </ul>
       <div class="exp-tags">
-        <span class="exp-tag">Active Directory</span><span class="exp-tag">Group Policy</span><span class="exp-tag">SCCM</span><span class="exp-tag">Platform Engineering</span><span class="exp-tag">Global Deployment</span>
+        <span class="exp-tag">SAP</span>
+        <span class="exp-tag">Supply Chain</span>
+        <span class="exp-tag">Reverse Logistics</span>
+        <span class="exp-tag">Order Management</span>
+        <span class="exp-tag">Customer Retention</span>
       </div>
     </div>
 
-    <!-- Earlier roles -->
+    <!-- Pentagon -->
     <div class="exp-item fade-in">
       <div class="exp-header">
-        <div class="exp-left">
-          <div class="exp-co-row exp-co-multi">
-            <img class="co-logo" src="logos/sap.png" alt="SAP" onerror="this.style.display='none'">
-            <img class="co-logo" src="logos/hp.png" alt="HP" onerror="this.style.display='none'">
-            <img class="co-logo" src="logos/apple.png" alt="Apple" onerror="this.style.display='none'">
-            <img class="co-logo" src="logos/fujitsu.png" alt="Fujitsu" onerror="this.style.display='none'">
-            <img class="co-logo" src="logos/dell.png" alt="Dell" onerror="this.style.display='none'">
-            <div>
-              <div class="exp-title">Earlier Roles</div>
-              <div class="exp-company">SAP AG · HP Enterprise · Apple · Fujitsu · Dell</div>
-            </div>
-          </div>
+        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="logos/pentagon.png" alt="Pentagon" style="background:#4a4e69" onerror="this.style.display='none'"><div><div class="exp-title">Logistics Executive</div>
+          <div class="exp-company">Pentagon Freight Services Pte. Ltd.</div></div></div>
+          <div class="exp-location">📍 Singapore</div>
         </div>
-        <div class="exp-period">2007 — 2014</div>
+        <div class="exp-period">May 2012 — Dec 2012</div>
       </div>
-      <p class="exp-desc">Technology Consultant roles across SAP AG (SCCM global standardization, APJ migrations), Hewlett Packard Enterprise (Windows 7 deployment 60,000+ seats, BitLocker, Group Policy), Apple (APAC technical support), and Fujitsu (IT onsite team lead, M1 domain). Built foundations in systems engineering, deployment, and enterprise IT operations.</p>
+      <ul class="exp-bullets">
+        <li>Coordinated import/export shipments for oil and gas clients, ensuring accurate documentation and timely delivery.</li>
+        <li>Prepared quotations and managed daily billing to drive revenue growth.</li>
+      </ul>
       <div class="exp-tags">
-        <span class="exp-tag">SCCM</span><span class="exp-tag">Windows Deployment</span><span class="exp-tag">BitLocker</span><span class="exp-tag">Apple Technical</span><span class="exp-tag">Endpoint Management</span>
+        <span class="exp-tag">Oil & Gas</span>
+        <span class="exp-tag">Import/Export</span>
+        <span class="exp-tag">Freight Billing</span>
+      </div>
+    </div>
+
+    <!-- Ryder-Ascent CSO -->
+    <div class="exp-item fade-in">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Customer Service Officer — Import</div>
+          <div class="exp-company">Ryder-Ascent Logistics Pte. Ltd.</div>
+          <div class="exp-location">📍 Singapore</div>
+        </div>
+        <div class="exp-period">Apr 2010 — Apr 2012</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Managed import shipments, customs clearances, and local truck deliveries end-to-end.</li>
+        <li>Monitored inventory and prepared monthly GST, storage, and clearance billings.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">Import Shipments</span>
+        <span class="exp-tag">Customs Clearance</span>
+        <span class="exp-tag">GST Billing</span>
+        <span class="exp-tag">Inventory Monitoring</span>
+      </div>
+    </div>
+
+    <!-- Earlier roles condensed -->
+    <div class="exp-item fade-in">
+      <div class="exp-header">
+        <div class="exp-left"><div class="exp-co-row exp-co-multi">
+            <img class="co-logo" src="logos/xiahe.png" alt="Xiahe Porcelain" style="background:#8b5e3c" onerror="this.style.display='none'">
+            <img class="co-logo" src="logos/hsr.png" alt="HSR International" style="background:#2c3e50" onerror="this.style.display='none'">
+            <img class="co-logo" src="logos/accenture.png" alt="Accenture Philippines" style="background:#a100ff" onerror="this.style.display='none'">
+            <div>
+          <div class="exp-title">Earlier Roles</div>
+          <div class="exp-company">Xiahe Porcelain · HSR International Realtors · Accenture Philippines</div>
+</div></div></div>
+        <div class="exp-period">2007 — 2010</div>
+      </div>
+      <p class="exp-desc">
+        Built a diverse foundation across administration, HR, and real estate support. At Accenture Philippines, coordinated 20+ employee workshops monthly, managed logistics for events attended by 2,000+ employees, and negotiated with vendors to maximize project budgets. Developed strong stakeholder management, event coordination, and administrative systems skills.
+      </p>
+      <div class="exp-tags">
+        <span class="exp-tag">HR Coordination</span>
+        <span class="exp-tag">Event Logistics</span>
+        <span class="exp-tag">Vendor Negotiation</span>
+        <span class="exp-tag">Administration</span>
+        <span class="exp-tag">Database Management</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ══ SOLUTIONS ══ -->
-<section id="solutions">
+<!-- ══ EXPERTISE ══ -->
+<section id="expertise">
   <div class="section-header fade-in">
-    <div class="section-tag">03 — Portfolio</div>
-    <h2 class="section-title">Solutions &amp; <span class="accent">Modules Built</span></h2>
-    <p style="color:var(--text2);font-size:15px;margin-top:16px;max-width:600px;line-height:1.6">End-to-end ownership from ideation through engineering, productization, and continuous improvement.</p>
+    <div class="section-tag">03 — Expertise</div>
+    <h2 class="section-title">Core <span class="accent">Capabilities</span></h2>
   </div>
-
-  <div style="margin-bottom:16px">
-    <div class="section-tag" style="font-size:9px;margin-bottom:16px">SOLUTIONS</div>
-    <div class="solutions-grid fade-in">
-      <div class="solution-card"><div class="sol-icon">☁️</div><div><div class="sol-type">Azure</div><div class="sol-name">Azure Simple</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🔧</div><div><div class="sol-type">Managed Services</div><div class="sol-name">Cloud Managed Services for Azure</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🚀</div><div><div class="sol-type">Migration</div><div class="sol-name">Cloud Migration Solutions (Azure &amp; AWS)</div></div></div>
-      <div class="solution-card"><div class="sol-icon">📦</div><div><div class="sol-type">Starter Pack</div><div class="sol-name">Cloud Starter Pack — Azure &amp; AWS</div></div></div>
-      <div class="solution-card"><div class="sol-icon">⚡</div><div><div class="sol-type">Acceleration</div><div class="sol-name">Cloud Acceleration Starter Pack — Azure &amp; AWS</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🗺️</div><div><div class="sol-type">Planning</div><div class="sol-name">Migration Planning &amp; Design — Azure &amp; AWS</div></div></div>
-      <div class="solution-card"><div class="sol-icon">⚙️</div><div><div class="sol-type">Execution</div><div class="sol-name">Cloud Migration Execution — Azure &amp; AWS</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🌿</div><div><div class="sol-type">VMware</div><div class="sol-name">Migration for VMware Cloud on AWS</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🔄</div><div><div class="sol-type">VMware</div><div class="sol-name">Cloud Migration for Azure VMware Solution</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🛡️</div><div><div class="sol-type">Support</div><div class="sol-name">Unified Support for Multivendor</div></div></div>
+  <div class="expertise-grid">
+    <div class="expertise-card fade-in">
+      <div class="exp-card-icon">🚢</div>
+      <div class="exp-card-title">Multi-Modal Freight</div>
+      <div class="exp-card-desc">Sea, air, and land freight coordination for 80+ clients. Deep knowledge of container management, booking workflows, and carrier relationships.</div>
     </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div>
-    <div class="section-tag" style="font-size:9px;margin-bottom:16px">SERVICE MODULES</div>
-    <div class="solutions-grid fade-in">
-      <div class="solution-card"><div class="sol-icon">🎓</div><div><div class="sol-type">Module</div><div class="sol-name">Cloud Bootcamp (Azure/AWS/VMware)</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🔍</div><div><div class="sol-type">Module</div><div class="sol-name">Infrastructure Discovery &amp; Assessment</div></div></div>
-      <div class="solution-card"><div class="sol-icon">📱</div><div><div class="sol-type">Module</div><div class="sol-name">Application Discovery &amp; Assessment</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🏗️</div><div><div class="sol-type">Module</div><div class="sol-name">Landing Zone Design &amp; Deployment</div></div></div>
-      <div class="solution-card"><div class="sol-icon">📋</div><div><div class="sol-type">Module</div><div class="sol-name">Migration Planning</div></div></div>
-      <div class="solution-card"><div class="sol-icon">✅</div><div><div class="sol-type">Module</div><div class="sol-name">Service Success</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🚨</div><div><div class="sol-type">Module</div><div class="sol-name">Incident Support (Azure/MultiVendor)</div></div></div>
-      <div class="solution-card"><div class="sol-icon">📬</div><div><div class="sol-type">Module</div><div class="sol-name">Service Request &amp; Change Management</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🕵️</div><div><div class="sol-type">Module</div><div class="sol-name">Fraud Detection (Azure)</div></div></div>
-      <div class="solution-card"><div class="sol-icon">💰</div><div><div class="sol-type">Module</div><div class="sol-name">Cost Optimization (Azure/AWS)</div></div></div>
-      <div class="solution-card"><div class="sol-icon">🏛️</div><div><div class="sol-type">Module</div><div class="sol-name">Well Architected Review (Azure/AWS)</div></div></div>
-      <div class="solution-card"><div class="sol-icon">📏</div><div><div class="sol-type">Module</div><div class="sol-name">Governance &amp; Compliance Review</div></div></div>
-      <div class="solution-card"><div class="sol-icon">❗</div><div><div class="sol-type">Module</div><div class="sol-name">Problem Management (Azure)</div></div></div>
+    <div class="expertise-card fade-in fade-in-delay-1">
+      <div class="exp-card-icon">📋</div>
+      <div class="exp-card-title">Customs & Compliance</div>
+      <div class="exp-card-desc">Preparation and validation of customs documents, invoices, packing lists, GST bonds, and ASNs across Singapore, Canada, and Asia Pacific markets.</div>
     </div>
-  </div>
-</section>
-
-<!-- ══ TESTIMONIALS ══ -->
-<section id="testimonials">
-  <div class="section-header fade-in" style="text-align:center">
-    <div class="section-tag" style="justify-content:center">04 — Recognition</div>
-    <h2 class="section-title">What Colleagues <span class="accent">Say</span></h2>
-  </div>
-
-  <div class="testimonials-marquee">
-    <div class="testimonials-track" id="testimonialsTrack">
-      <!-- Cards duplicated for seamless loop -->
+    <div class="expertise-card fade-in fade-in-delay-2">
+      <div class="exp-card-icon">🏭</div>
+      <div class="exp-card-title">Warehouse & Inventory</div>
+      <div class="exp-card-desc">End-to-end inbound logistics management, KPI compliance, discrepancy resolution, and annual inventory audits for large-scale 3PL operations.</div>
     </div>
-  </div>
-
-  <div style="margin-top:60px">
-    <div class="awards-grid">
-      <div class="award-card fade-in">
-        <div class="award-icon">🏆</div>
-        <div class="award-title">President's Club Winner</div>
-        <div class="award-org">SoftwareONE Executive Board</div>
-        <div class="award-year">2022 · Berlin, Germany</div>
-        <div class="award-desc">Selected among the highest-performing employees globally for consistently modelling SoftwareONE engineering values, innovation in service design, and going above and beyond.</div>
-      </div>
-      <div class="award-card fade-in fade-in-delay-1">
-        <div class="award-icon">🌟</div>
-        <div class="award-title">Azure Rock Star</div>
-        <div class="award-org">SoftwareONE · Mike Fitzgerald</div>
-        <div class="award-year">Multiple years</div>
-        <div class="award-desc">Repeatedly recognised as the Azure technical go-to across the FDC portfolio and beyond. Described as brilliant, customer-focused, and a true team multiplier.</div>
-      </div>
-      <div class="award-card fade-in fade-in-delay-2">
-        <div class="award-icon">💡</div>
-        <div class="award-title">Service Modularization Pioneer</div>
-        <div class="award-org">SoftwareONE</div>
-        <div class="award-year">2018 — 2025</div>
-        <div class="award-desc">Invented and championed the Service Modularization concept company-wide — a framework adopted globally that transformed how cloud services are designed, packaged, and delivered.</div>
-      </div>
+    <div class="expertise-card fade-in">
+      <div class="exp-card-icon">🤖</div>
+      <div class="exp-card-title">AI & Automation Testing</div>
+      <div class="exp-card-desc">Testing and evaluating AI tools and API integrations in operational contexts. Prompt engineering and identifying automation opportunities within business processes.</div>
     </div>
-  </div>
-</section>
-
-<!-- ══ CERTIFICATIONS ══ -->
-<section id="certifications">
-  <div class="section-header fade-in">
-    <div class="section-tag">05 — Certifications</div>
-    <h2 class="section-title">Professional <span class="accent">Credentials</span></h2>
-  </div>
-
-  <div class="cert-groups">
-
-    <div class="cert-group fade-in">
-      <div class="cert-group-header">
-        <div class="cert-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"
-            onerror="this.style.display='none';this.parentElement.innerHTML='<span style=&quot;font-size:20px&quot;>🪟</span>'">
-        </div>
-        <div>
-          <div class="cert-group-name">Microsoft</div>
-          <div class="cert-count">20 Certifications</div>
-        </div>
-      </div>
-      <div class="cert-list">
-        <div class="cert-item">MCSD: Azure Solutions Architect</div>
-        <div class="cert-item">MS Specialist: Architecting Azure Solutions</div>
-        <div class="cert-item">MS Specialist: Developing Azure Solutions</div>
-        <div class="cert-item">MS Specialist: Implementing Azure Infrastructure</div>
-        <div class="cert-item">MCSE Cloud Platform &amp; Infrastructure ★ Charter</div>
-        <div class="cert-item">MCSE Productivity ★ Charter</div>
-        <div class="cert-item">MCSE Private Cloud</div>
-        <div class="cert-item">MCSE Desktop &amp; Server Infrastructure</div>
-        <div class="cert-item">MCITP: Enterprise Administrator on WS 2008</div>
-        <div class="cert-item">MCSA: Office 365, WS 2012, WS 2008</div>
-        <div class="cert-item">MCTS: SCCM 2012, SCCM 2007</div>
-        <div class="cert-item">MCTS: WS 2008 (Apps, Network, AD)</div>
-        <div class="cert-item">MCTS: Windows 7 &amp; Office 2010 Deployment</div>
-      </div>
+    <div class="expertise-card fade-in fade-in-delay-1">
+      <div class="exp-card-icon">💻</div>
+      <div class="exp-card-title">SAP & Systems</div>
+      <div class="exp-card-desc">Daily SAP inventory adjustments, WMS operations, and Microsoft Office / Google Workspace for reporting, documentation, and workflow management.</div>
     </div>
-
-    <div class="cert-group fade-in fade-in-delay-1">
-      <div class="cert-group-header">
-<div class="cert-logo" style="background:#0c6b9e"><img src="logos/citrix.png" alt="Citrix" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">CX</span></div>
-        <div>
-          <div class="cert-group-name">Citrix</div>
-          <div class="cert-count">3 Certifications</div>
-        </div>
-      </div>
-      <div class="cert-list">
-        <div class="cert-item">CCA: Citrix XenApp 6.5</div>
-        <div class="cert-item">CCA: Citrix XenServer 6</div>
-        <div class="cert-item">CCA: Citrix XenDesktop 5</div>
-      </div>
+    <div class="expertise-card fade-in fade-in-delay-2">
+      <div class="exp-card-icon">🤝</div>
+      <div class="exp-card-title">Client & Stakeholder Management</div>
+      <div class="exp-card-desc">Managing relationships with 80+ clients and 100+ suppliers, handling escalations, urgent requests, and cross-regional coordination across multiple time zones.</div>
     </div>
-
-    <div class="cert-group fade-in fade-in-delay-1">
-      <div class="cert-group-header">
-<div class="cert-logo" style="background:#a51c30"><img src="logos/harvard.png" alt="Harvard Business School" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">HBS</span></div>
-        <div>
-          <div class="cert-group-name">Executive Education</div>
-          <div class="cert-count">4 Programs</div>
-        </div>
-      </div>
-      <div class="cert-list">
-        <div class="cert-item">Harvard Business School Online — Business Analytics, Economics, Financial Accounting</div>
-        <div class="cert-item">NUS — Design Thinking &amp; Innovation for Business</div>
-        <div class="cert-item">Lee Kuan Yew School — Negotiation Strategies for Success</div>
-        <div class="cert-item">LSE — Business, International Relations &amp; Political Economy</div>
-      </div>
+    <div class="expertise-card fade-in">
+      <div class="exp-card-icon">🔄</div>
+      <div class="exp-card-title">Reverse Logistics</div>
+      <div class="exp-card-desc">Experienced in return-to-vendor, hardware scrap, destruction processes, and bi-annual inventory reconciliation for global supply chains.</div>
     </div>
-
-    <div class="cert-group fade-in fade-in-delay-2">
-      <div class="cert-group-header">
-<div class="cert-logo" style="background:#334155"><span class="logo-init">SVC</span></div>
-        <div>
-          <div class="cert-group-name">Service Management &amp; Other</div>
-          <div class="cert-count">Multiple</div>
-        </div>
-      </div>
-      <div class="cert-list">
-        <div class="cert-item">Verdasys: Supporting Digital Guardian</div>
-        <div class="cert-item">Remedy, ServiceNow, CA IT Asset Manager</div>
-        <div class="cert-item">HP Service Manager</div>
-        <div class="cert-item">Change, Incident &amp; Release Management</div>
-      </div>
+    <div class="expertise-card fade-in fade-in-delay-1">
+      <div class="exp-card-icon">📊</div>
+      <div class="exp-card-title">Process Optimisation</div>
+      <div class="exp-card-desc">Analysing end-to-end business processes to identify inefficiencies, streamline workflows, and implement technology-driven improvements.</div>
     </div>
-
   </div>
 </section>
 
 <!-- ══ EDUCATION ══ -->
 <section id="education">
   <div class="section-header fade-in">
-    <div class="section-tag">06 — Education</div>
+    <div class="section-tag">04 — Education</div>
     <h2 class="section-title">Academic <span class="accent">Background</span></h2>
   </div>
-
   <div class="edu-grid">
     <div class="edu-card fade-in">
-<div class="edu-logo" style="background:#003087"><img src="logos/adamson.png" alt="Adamson University" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">AdU</span></div>
-      <div class="edu-content">
-        <div class="edu-degree">Bachelor of Science in Computer Engineering</div>
-        <div class="edu-school">Adamson University — Manila, Philippines</div>
-        <div class="edu-period">June 2001 — October 2006</div>
+<div class="edu-logo" style="background:#1a5276"><img src="logos/simm.png" alt="SIMM" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">SIMM</span></div>
+      <div>
+        <div class="edu-degree">Diploma in Logistics Management</div>
+        <div class="edu-school">Singapore Institute of Materials Management</div>
+        <div class="edu-period">Singapore · 2012 — 2013</div>
       </div>
     </div>
-
     <div class="edu-card fade-in fade-in-delay-1">
-<div class="edu-logo" style="background:#a51c30"><img src="logos/harvard.png" alt="Harvard Business School" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">HBS</span></div>
-      <div class="edu-content">
-        <div class="edu-degree">Core Program: Business Analytics, Economics, Financial Accounting</div>
-        <div class="edu-school">Harvard Business School Online</div>
-        <div class="edu-period">Executive Education</div>
-      </div>
-    </div>
-
-    <div class="edu-card fade-in">
-<div class="edu-logo" style="background:#003d7c"><img src="logos/nus.png" alt="National University of Singapore" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">NUS</span></div>
-      <div class="edu-content">
-        <div class="edu-degree">Design Thinking and Innovation for Business</div>
-        <div class="edu-school">National University of Singapore</div>
-        <div class="edu-period">Executive Education</div>
-      </div>
-    </div>
-
-    <div class="edu-card fade-in fade-in-delay-1">
-<div class="edu-logo" style="background:#8b1a1a"><img src="logos/lse.png" alt="London School of Economics" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">LSE</span></div>
-      <div class="edu-content">
-        <div class="edu-degree">Business, International Relations &amp; the Political Economy</div>
-        <div class="edu-school">London School of Economics (LSE)</div>
-        <div class="edu-period">Executive Education</div>
-      </div>
-    </div>
-
-    <div class="edu-card fade-in">
-<div class="edu-logo" style="background:#c0392b"><img src="logos/lkyspp.png" alt="Lee Kuan Yew School of Public Policy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none">LKY</span></div>
-      <div class="edu-content">
-        <div class="edu-degree">Negotiation Strategies for Success</div>
-        <div class="edu-school">Lee Kuan Yew School of Public Policy</div>
-        <div class="edu-period">Executive Education</div>
+<div class="edu-logo" style="background:#ffd700"><img src="logos/ust.png" alt="University of Santo Tomas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;color:#333">UST</span></div>
+      <div>
+        <div class="edu-degree">Bachelor of Science in Psychology</div>
+        <div class="edu-school">University of Santo Tomas</div>
+        <div class="edu-period">Manila, Philippines · 2003 — 2007</div>
       </div>
     </div>
   </div>
@@ -1166,123 +775,28 @@ footer {
 <!-- ══ CONTACT ══ -->
 <section id="contact">
   <div class="contact-content fade-in">
-    <div class="section-tag" style="justify-content:center">07 — Contact</div>
-    <h2 class="section-title" style="font-size:clamp(36px,5vw,60px)">Let's <span class="accent">Connect</span></h2>
-    <p style="color:var(--text2);font-size:16px;margin-top:16px;line-height:1.7">
-      Open to senior cloud architecture, consulting, and technology leadership roles. Based in Singapore, experienced with global remote collaboration across all time zones.
+    <div class="section-tag" style="justify-content:center">05 — Contact</div>
+    <h2 class="section-title" style="font-size:clamp(34px,4.5vw,52px)">Let's <span class="accent">Connect</span></h2>
+    <p style="color:var(--text2);font-size:15px;margin-top:14px;line-height:1.7">
+      Open to Operations, Logistics, and AI-adjacent roles in Singapore. Bringing 15+ years of supply chain expertise and a genuine passion for intelligent automation.
     </p>
-    <a href="mailto:frederick.esparagoza@gmail.com" class="contact-email">frederick.esparagoza@gmail.com</a>
-    <div style="font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-bottom:24px">+65 9364 6024 · Singapore 533885</div>
+    <a href="mailto:eld.arianne@gmail.com" class="contact-email">eld.arianne@gmail.com</a>
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:22px">(+63) 917 110 2830 · Singapore</div>
     <div class="contact-links">
-      <a href="https://gg.linkedin.com/in/redesparagoza" target="_blank" class="contact-link">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-        LINKEDIN
-      </a>
-      <a href="mailto:frederick.esparagoza@gmail.com" class="contact-link">✉ EMAIL</a>
-      <a href="tel:+6593646024" class="contact-link">📱 CALL</a>
+      <a href="mailto:eld.arianne@gmail.com" class="contact-link">✉ EMAIL</a>
+      <a href="tel:+639171102830" class="contact-link">📱 CALL</a>
     </div>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <span>© 2025 Frederick Prado Esparagoza. All rights reserved.</span>
-  <span>Kingsford Waterbay · Singapore</span>
+  <span>© 2025 Arianne Mae Sunega Esparagoza</span>
+  <span>Singapore</span>
 </footer>
 
 <script>
-// ── TESTIMONIALS DATA ──
-const testimonials = [
-  { quote: "You consistently model the behaviors for what it means to be a SoftwareONE Engineer. You take complex problems, break them down to solution approaches, engage with many to validate and share forward the lessons learned.", author:"Bernd Schlotter", role:"President Services & Member Executive Board, SoftwareONE", value:"Discipline" },
-  { quote: "Thank you for many things, especially being flexible in taking on new challenges like Unified Support, and being a thought leader on Service Modularization. I used to think having someone in my team smarter than me would not be a good thing, but I have learned that it is in fact a great thing and a great relief to have you.", author:"Timothy Neylan", role:"Manager, SoftwareONE", value:"Employee Satisfaction" },
-  { quote: "Fred, thanks a lot for your excellent knowledge and support with our cloud services creation! Without your support and valuable inputs, it won't be possible to move forward!", author:"Aleksey Shurov", role:"SoftwareONE", value:"Employee Satisfaction" },
-  { quote: "Brilliant, customer focused solutioning across the FDC portfolio, and bringing the whole team along for the ride!", author:"David Mitchell", role:"SoftwareONE", value:"Speed" },
-  { quote: "Thanks for going above and beyond on all of the enablement sessions, and for everything you contributed to the new services. They would be a fraction of what they are without your contribution!", author:"Gordon Davey", role:"SoftwareONE", value:"Passionate" },
-  { quote: "Thank you for being so passionate and committed to improving our existing products and developing new ones. You consistently show a willingness to step outside of your role to make stuff happen and see projects over the line.", author:"Alex Considinetong", role:"SoftwareONE", value:"Passionate" },
-  { quote: "Dude - it goes without saying! You rock! :) You are a true inspiration and really live up to our values. You work tirelessly around the clock to accommodate time zones and produce high quality work. A true shining star!", author:"Tyler Williams", role:"SoftwareONE", value:"Humble" },
-  { quote: "You are amazing Fred, I am always amazed at how proactive you are and you just get things done that need getting done. You have a chance to be the first to try and bring together the Azure and AWS story — there is no one I would rather put on the task.", author:"Timothy Neylan", role:"SoftwareONE", value:"Passionate" },
-  { quote: "It is hard to praise you for one thing in particular. You excel at most everything you are given, have a well structured and thoughtful approach, and are open minded to other ideas.", author:"Timothy Neylan", role:"SoftwareONE", value:"Humble" },
-  { quote: "Great work on the service module approach and baselining that across Data Center and Security teams, thank you for your support!", author:"Sean Nicholson", role:"SoftwareONE", value:"Discipline" },
-  { quote: "For your awesome work and structuring the services into modules!", author:"Ron Vermeulen", role:"SoftwareONE", value:"Passionate" },
-  { quote: "Thanks for pushing the development of our VMware Cloud on AWS Service — keep going!", author:"Marco Vogel", role:"SoftwareONE", value:"Passionate" },
-  { quote: "Thank you for the perfect management and delivery of next PI-phases. Such progress wouldn't be possible without you.", author:"Jaroslaw Wilk", role:"SoftwareONE", value:"Passionate" },
-  { quote: "It's been so great working with you. You always push to go an extra mile. It comes only when someone is passionate about what he does. You surely are passionate about things that comes to your plate.", author:"Gautam Gidwani", role:"SoftwareONE", value:"Passionate" },
-  { quote: "Thanks for always being willing to help, whether it's stepping up with responding to FDC-related ideas while Ron is out or contributing great input to the EA board!", author:"Lauren Lefler", role:"SoftwareONE", value:"Passionate" },
-  { quote: "I always appreciate when you challenge the status quo and give me better ways to run our engineering practice. Makes me better and makes the team better.", author:"Timothy Neylan", role:"SoftwareONE", value:"Employee Satisfaction" },
-  { quote: "Thanks for always assisting and supporting in deals.", author:"Ronino Tabanan", role:"SoftwareONE", value:"Humble" },
-  { quote: "Thank you for all the support & guidance you provided to me on the HyperScaler Migration solution initiative for building out a PMO framework for the new services.", author:"Kapil Sachdeva", role:"SoftwareONE", value:"Humble" },
-  { quote: "Woow! you're a crack! Thank you so much for your time and for sharing me your expertise with the toolbox.", author:"Gabriela Alonso", role:"SoftwareONE", value:"Passionate" },
-];
-
-function buildTestimonials() {
-  const track = document.getElementById('testimonialsTrack');
-  // Double for seamless loop
-  const allTests = [...testimonials, ...testimonials];
-  allTests.forEach(t => {
-    const card = document.createElement('div');
-    card.className = 'testimonial-card';
-    card.innerHTML = `
-      <p class="test-quote">"${t.quote}"</p>
-      <div class="test-author">
-        <div class="test-avatar">${t.author[0]}</div>
-        <div>
-          <div class="test-name">${t.author}</div>
-          <div class="test-role">${t.role}</div>
-          <div class="test-value">★ ${t.value}</div>
-        </div>
-      </div>`;
-    track.appendChild(card);
-  });
-}
-buildTestimonials();
-
-// ── INTERSECTION OBSERVER for animations ──
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      // Trigger skill bar animations
-      e.target.querySelectorAll('.skill-fill').forEach(bar => {
-        bar.classList.add('animated');
-      });
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// Also observe skill bars globally
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.querySelectorAll ? e.target.querySelectorAll('.skill-fill').forEach(bar => bar.classList.add('animated')) : null;
-    }
-  });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.skills-grid').forEach(el => skillObserver.observe(el));
-
-// ── NAV SCROLL EFFECT ──
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('nav');
-  nav.style.background = window.scrollY > 50 ? 'rgba(247,248,250,.97)' : 'rgba(247,248,250,.92)';
-});
-
-// ── ACTIVE NAV LINK ──
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(l => l.style.color = '');
-      const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-      if (active) active.style.color = 'var(--accent)';
-    }
-  });
-}, { rootMargin: '-40% 0px -40% 0px' });
-sections.forEach(s => navObserver.observe(s));
-
-// ── CIRCULAR FAVICON from fred.png ──
+// ── CIRCULAR FAVICON ──
 function makeCircularFavicon(src) {
   const img = new Image();
   img.crossOrigin = 'anonymous';
@@ -1291,34 +805,27 @@ function makeCircularFavicon(src) {
     const canvas = document.createElement('canvas');
     canvas.width = canvas.height = sz;
     const ctx = canvas.getContext('2d');
-    // Circle clip
     ctx.beginPath();
     ctx.arc(sz/2, sz/2, sz/2, 0, Math.PI*2);
-    ctx.closePath();
-    ctx.clip();
-    // Draw image centered / cover
+    ctx.closePath(); ctx.clip();
     const scale = Math.max(sz/img.naturalWidth, sz/img.naturalHeight);
-    const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
+    const w = img.naturalWidth*scale, h = img.naturalHeight*scale;
     ctx.drawImage(img, (sz-w)/2, (sz-h)/2, w, h);
-    // Accent ring
-    ctx.strokeStyle = '#1a56e8';
+    ctx.strokeStyle = '#0d9e8a';
     ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.arc(sz/2, sz/2, sz/2 - 1.5, 0, Math.PI*2);
+    ctx.arc(sz/2, sz/2, sz/2-1.5, 0, Math.PI*2);
     ctx.stroke();
-    // Apply to favicon
     const link = document.getElementById('faviconLink') || document.createElement('link');
-    link.id = 'faviconLink';
-    link.rel = 'icon';
-    link.type = 'image/png';
+    link.id = 'faviconLink'; link.rel = 'icon'; link.type = 'image/png';
     link.href = canvas.toDataURL('image/png');
     document.head.appendChild(link);
   };
   img.src = src;
 }
-makeCircularFavicon('fred.png');
+makeCircularFavicon('arianne.png');
 
-// ── MOBILE NAV TOGGLE ──
+// ── MOBILE NAV ──
 const hamburger = document.getElementById('navHamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 if (hamburger && mobileMenu) {
@@ -1327,35 +834,32 @@ if (hamburger && mobileMenu) {
     mobileMenu.style.display = open ? 'none' : 'flex';
     hamburger.textContent = open ? '☰' : '✕';
   });
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mobileMenu.style.display = 'none';
-      hamburger.textContent = '☰';
-    });
-  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.style.display = 'none'; hamburger.textContent = '☰';
+  }));
 }
 
-// ── TYPED HERO SUBTITLE ──
+// ── TYPED SUBTITLE ──
 const subtitleEl = document.getElementById('heroSubtitle');
 if (subtitleEl) {
   const phrases = [
-    'Global Cloud Architect',
-    'Azure Solutions Expert',
-    'Service Builder & Innovator',
-    'Multi-Cloud Strategist',
-    'President\'s Club 2022'
+    'Operations Specialist',
+    'Logistics Professional',
+    'AI & Process Innovator',
+    'Supply Chain Expert',
+    'Freight Coordinator'
   ];
-  let pi = 0, ci = 0, deleting = false;
+  let pi=0, ci=0, deleting=false;
   function type() {
     const phrase = phrases[pi];
     if (!deleting) {
       subtitleEl.textContent = phrase.slice(0, ++ci);
-      if (ci === phrase.length) { deleting = true; setTimeout(type, 2000); return; }
+      if (ci === phrase.length) { deleting=true; setTimeout(type, 2200); return; }
     } else {
       subtitleEl.textContent = phrase.slice(0, --ci);
-      if (ci === 0) { deleting = false; pi = (pi+1) % phrases.length; }
+      if (ci === 0) { deleting=false; pi=(pi+1)%phrases.length; }
     }
-    setTimeout(type, deleting ? 40 : 80);
+    setTimeout(type, deleting?38:75);
   }
   type();
 }
@@ -1365,25 +869,60 @@ function animateCounter(el, target, suffix='') {
   const duration = 1800;
   const start = performance.now();
   function update(now) {
-    const t = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - t, 3);
-    el.textContent = Math.round(ease * target) + suffix;
+    const t = Math.min((now-start)/duration, 1);
+    const ease = 1 - Math.pow(1-t, 3);
+    const val = Math.round(ease*target);
+    el.textContent = val >= 1000 ? (val >= 10000 ? '10K' : val.toLocaleString()) + suffix : val + suffix;
     if (t < 1) requestAnimationFrame(update);
   }
   requestAnimationFrame(update);
 }
-
-const counterObserver = new IntersectionObserver((entries) => {
+const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       counterObserver.unobserve(e.target);
-      const val = parseInt(e.target.dataset.count);
-      const suf = e.target.dataset.suffix || '';
-      animateCounter(e.target, val, suf);
+      animateCounter(e.target, parseInt(e.target.dataset.count), e.target.dataset.suffix||'');
     }
   });
-}, { threshold: 0.5 });
+}, { threshold:0.5 });
 document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+// ── SCROLL ANIMATIONS ──
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.skill-fill').forEach(b => b.classList.add('animated'));
+    }
+  });
+}, { threshold:0.1 });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.querySelectorAll('.skill-fill').forEach(b => b.classList.add('animated'));
+  });
+}, { threshold:0.2 });
+document.querySelectorAll('.skills-grid').forEach(el => skillObserver.observe(el));
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.background =
+    window.scrollY > 50 ? 'rgba(247,249,248,.97)' : 'rgba(247,249,248,.92)';
+});
+
+// ── ACTIVE NAV ──
+const navLinks = document.querySelectorAll('.nav-links a');
+const secObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.style.color = '');
+      const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (active) active.style.color = 'var(--accent)';
+    }
+  });
+}, { rootMargin:'-40% 0px -40% 0px' });
+document.querySelectorAll('section[id]').forEach(s => secObserver.observe(s));
 </script>
 </body>
 </html>
