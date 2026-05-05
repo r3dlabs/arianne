@@ -700,13 +700,38 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const profileImagePath = './arianne.png';
     const headerAvatar = document.getElementById('headerAvatar');
     const profileAvatar = document.getElementById('profileAvatar');
     const favicon = document.getElementById('dynamic-favicon');
 
-    function makeCircularFavicon(image) {
+    /*
+      Default behavior: no external image is requested, so the page will not trigger
+      a 403 for ./arianne.png. It safely shows AE initials instead.
+
+      To enable the photo later, add this attribute to the <body> tag:
+      data-profile-image="./arianne.png"
+
+      Example:
+      <body id="top" data-profile-image="./arianne.png">
+    */
+    const profileImagePath = document.body.dataset.profileImage || '';
+
+    function makeInitialsFavicon(initials = 'AE') {
       if (!favicon) return;
+
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+          <circle cx="48" cy="48" r="48" fill="%23ff8fb3"/>
+          <text x="48" y="59" font-size="34" font-family="Arial,sans-serif" font-weight="800" text-anchor="middle" fill="%231e0b18">${initials}</text>
+        </svg>`;
+
+      favicon.href = `data:image/svg+xml,${svg.replace(/
+\s+/g, '').trim()}`;
+      favicon.type = 'image/svg+xml';
+    }
+
+    function makeCircularFavicon(image) {
+      if (!favicon || !image.naturalWidth || !image.naturalHeight) return;
 
       const size = 96;
       const canvas = document.createElement('canvas');
@@ -733,7 +758,7 @@
       favicon.type = 'image/png';
     }
 
-    function applyAvatarImage(src, loadedImage) {
+    function applyAvatarImage(loadedImage) {
       const headerImg = loadedImage.cloneNode(false);
       headerImg.alt = '';
       headerImg.decoding = 'async';
@@ -750,14 +775,21 @@
       makeCircularFavicon(loadedImage);
     }
 
-    const testImage = new Image();
-    testImage.decoding = 'async';
-    testImage.onload = () => applyAvatarImage(profileImagePath, testImage);
-    testImage.onerror = () => {
-      headerAvatar.textContent = 'AE';
-      profileAvatar.textContent = 'AE';
-    };
-    testImage.src = profileImagePath;
+    headerAvatar.textContent = 'AE';
+    profileAvatar.textContent = 'AE';
+    makeInitialsFavicon('AE');
+
+    if (profileImagePath) {
+      const testImage = new Image();
+      testImage.decoding = 'async';
+      testImage.onload = () => applyAvatarImage(testImage);
+      testImage.onerror = () => {
+        headerAvatar.textContent = 'AE';
+        profileAvatar.textContent = 'AE';
+        makeInitialsFavicon('AE');
+      };
+      testImage.src = profileImagePath;
+    }
   </script>
 </body>
 </html>
