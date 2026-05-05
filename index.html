@@ -140,19 +140,6 @@ nav {
   background:linear-gradient(135deg, rgba(13,158,138,.12) 0%, rgba(224,90,43,.08) 100%);
   pointer-events:none;
 }
-.badge {
-  position:absolute; background:var(--surface); border:1px solid var(--border);
-  border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px;
-  box-shadow:0 8px 28px rgba(0,0,0,.12); backdrop-filter:blur(10px);
-}
-.badge-icon { font-size:20px; }
-.badge-text { display:flex; flex-direction:column; gap:1px; }
-.badge-val { font-family:var(--font-display); font-size:17px; color:var(--accent); line-height:1; }
-.badge-sub { font-family:var(--font-mono); font-size:8px; color:var(--muted); letter-spacing:1px; }
-.badge-1 { top:-14px; left:-36px; }
-.badge-2 { bottom:70px; right:-36px; }
-.badge-3 { bottom:-14px; left:-8px; }
-.badge-3 .badge-val { color:var(--accent2); }
 
 /* ── SECTIONS ── */
 section { padding:96px 80px; }
@@ -323,7 +310,6 @@ footer {
   #hero { grid-template-columns:1fr; padding:100px 22px 56px; gap:36px; }
   .hero-right { order:-1; }
   .avatar-card { width:220px; }
-  .badge-1 { display:none; }
   .about-grid { grid-template-columns:1fr; gap:36px; }
   .edu-grid { grid-template-columns:1fr; }
   footer { padding:18px 22px; flex-direction:column; text-align:center; }
@@ -410,27 +396,6 @@ footer {
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
         <div class="av-fallback" style="display:none">A</div>
         <div class="avatar-glow"></div>
-      </div>
-      <div class="badge badge-1">
-        <div class="badge-icon">🚢</div>
-        <div class="badge-text">
-          <div class="badge-val">Freight</div>
-          <div class="badge-sub">Sea · Air · Land</div>
-        </div>
-      </div>
-      <div class="badge badge-2">
-        <div class="badge-icon">🤖</div>
-        <div class="badge-text">
-          <div class="badge-val">AI Ops</div>
-          <div class="badge-sub">Prompt Engineering</div>
-        </div>
-      </div>
-      <div class="badge badge-3">
-        <div class="badge-icon">🌏</div>
-        <div class="badge-text">
-          <div class="badge-val" style="font-size:13px">Singapore</div>
-          <div class="badge-sub">Based In</div>
-        </div>
       </div>
     </div>
   </div>
