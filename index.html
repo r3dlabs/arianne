@@ -181,35 +181,75 @@ section { padding:96px 80px; }
 
 /* ── EXPERIENCE ── */
 #experience { background:var(--bg); }
-.timeline { position:relative; padding-left:40px; }
+
+.timeline { position:relative; padding-left:60px; }
 .timeline::before {
-  content:''; position:absolute; left:0; top:0; bottom:0;
-  width:1px; background:linear-gradient(to bottom, var(--accent), var(--border), transparent);
+  content:''; position:absolute; left:20px; top:8px; bottom:8px;
+  width:1px; background:var(--border);
 }
-.exp-item { position:relative; margin-bottom:52px; }
-.exp-item::before {
-  content:''; position:absolute; left:-43px; top:6px;
-  width:7px; height:7px; border-radius:50%;
-  background:var(--accent); box-shadow:0 0 10px rgba(13,158,138,.45);
+
+.exp-item { position:relative; margin-bottom:56px; }
+
+/* Logo acts as timeline marker — pull first logo onto the timeline rail */
+.exp-item .exp-co-row > .co-logo:first-child,
+.exp-item .exp-co-row > .logo-init:first-child {
+  position:absolute;
+  left:-60px; top:0;
+  width:40px; height:40px;
+  z-index:1;
+  margin:0;
 }
-.exp-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; gap:20px; flex-wrap:wrap; }
-.exp-title { font-family:var(--font-display); font-size:21px; letter-spacing:1.5px; color:var(--text); line-height:1.2; }
-.exp-company { font-family:var(--font-mono); font-size:11px; letter-spacing:1px; color:var(--accent); margin-bottom:4px; }
+/* Multi-logo row: first sits on rail, the rest stay inline (smaller) */
+.exp-co-multi .co-logo:not(:first-child),
+.exp-co-multi .logo-init:not(:first-child) {
+  width:28px; height:28px;
+  font-size:11px;
+}
+
+.exp-title {
+  font-family:var(--font-display); font-size:22px;
+  letter-spacing:1.5px; color:var(--text); line-height:1.2;
+}
+.exp-company-line {
+  font-family:var(--font-mono); font-size:11px; letter-spacing:1px;
+  color:var(--accent); margin-bottom:4px;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.exp-company-line .exp-period {
+  color:var(--muted);
+  font-size:10px; letter-spacing:1px;
+}
+.exp-company-line .exp-sep {
+  color:var(--border);
+  user-select:none;
+}
+.exp-company-line .exp-location {
+  color:var(--muted);
+  font-size:10px; letter-spacing:.5px;
+}
+
+/* LinkedIn-style company row: logo + title/company stacked */
 .exp-co-row { display:flex; align-items:center; gap:12px; margin-bottom:4px; }
 .exp-co-multi { gap:6px; }
-.co-logo { width:40px; height:40px; border-radius:8px; object-fit:contain; border:1px solid var(--border); background:var(--surface2); padding:4px; flex-shrink:0; }
-.exp-co-multi .co-logo { width:32px; height:32px; }
-.exp-left { flex:1; min-width:0; }
-.logo-init { font-family:var(--font-display); font-size:13px; letter-spacing:.5px; color:#fff; text-align:center; line-height:1; display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
-.edu-logo .logo-init { font-size:14px; }
-.exp-location { font-family:var(--font-mono); font-size:9px; color:var(--muted); letter-spacing:.5px; }
-.exp-period {
-  font-family:var(--font-mono); font-size:10px; letter-spacing:1px;
-  color:var(--muted); background:var(--surface); border:1px solid var(--border);
-  padding:4px 10px; border-radius:20px; white-space:nowrap; flex-shrink:0;
+.co-logo {
+  width:40px; height:40px; border-radius:8px;
+  object-fit:contain; border:1px solid var(--border);
+  background:var(--surface2); padding:4px;
+  flex-shrink:0;
 }
-.exp-desc { font-size:14px; color:var(--text2); line-height:1.7; max-width:680px; margin-bottom:14px; }
-.exp-bullets { margin:0 0 14px 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.exp-co-multi .co-logo { width:32px; height:32px; }
+.logo-init {
+  font-family:var(--font-display); font-size:13px; letter-spacing:.5px;
+  color:#fff; text-align:center; line-height:1;
+  align-items:center; justify-content:center;
+  border-radius:8px; border:1px solid var(--border);
+  flex-shrink:0;
+}
+.edu-logo .logo-init { font-size:14px; width:100%; height:100%; display:flex; }
+.exp-left { flex:1; min-width:0; }
+
+.exp-desc { font-size:14px; color:var(--text2); line-height:1.7; max-width:680px; margin-bottom:16px; }
+.exp-bullets { margin:0 0 16px 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
 .exp-bullets li {
   display:flex; align-items:flex-start; gap:10px;
   font-size:13px; color:var(--text2); line-height:1.6;
@@ -224,15 +264,58 @@ section { padding:96px 80px; }
   color:var(--muted); background:var(--surface2); border:1px solid var(--border);
   padding:3px 8px; border-radius:3px;
 }
+
+/* Highlight / achievement card */
 .highlight-card {
-  display:flex; align-items:flex-start; gap:12px;
+  display:flex; align-items:flex-start; gap:14px;
   background:linear-gradient(135deg, rgba(13,158,138,.07) 0%, rgba(224,90,43,.04) 100%);
-  border:1px solid rgba(13,158,138,.2); border-radius:8px;
-  padding:13px 16px; margin-bottom:14px;
+  border:1px solid rgba(13,158,138,.25);
+  border-radius:8px; padding:14px 18px; margin-bottom:16px;
 }
-.highlight-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.highlight-icon { font-size:20px; flex-shrink:0; margin-top:1px; }
 .highlight-text { font-size:13px; color:var(--text2); line-height:1.5; }
 .highlight-text strong { color:var(--accent); }
+
+/* Collapsible experience items */
+.exp-item.collapsible .exp-co-row {
+  cursor:pointer;
+  user-select:none;
+}
+.exp-toggle {
+  margin-left:auto;
+  font-family:var(--font-mono); font-size:14px;
+  color:var(--muted);
+  width:24px; height:24px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:4px;
+  transition:transform .25s, color .2s, background .2s;
+  flex-shrink:0;
+}
+.exp-item.collapsible .exp-co-row:hover .exp-toggle {
+  color:var(--accent);
+  background:var(--accent-light);
+}
+.exp-item.collapsible.expanded .exp-toggle {
+  transform:rotate(180deg);
+}
+.exp-body {
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transition:max-height .35s ease, opacity .25s ease, margin-top .25s ease;
+  margin-top:0;
+}
+.exp-item.collapsible.expanded .exp-body {
+  max-height:1500px;
+  opacity:1;
+  margin-top:14px;
+}
+/* Non-collapsible items always show body */
+.exp-item:not(.collapsible) .exp-body {
+  max-height:none;
+  opacity:1;
+  margin-top:14px;
+}
 
 /* ── EXPERTISE ── */
 #expertise { background:var(--surface); }
@@ -485,176 +568,252 @@ footer {
   <div class="timeline">
 
     <!-- Forward Labs -->
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="/forwardlabs.png" alt="Forward Labs" style="background:#0d9e8a" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:40px;height:40px;background:#0d9e8a;border-radius:8px;border:1px solid var(--border)">F</span><div><div class="exp-title">Operations Specialist</div>
-          <div class="exp-company">Forward Labs Pte. Ltd.</div></div></div>
-          <div class="exp-location">📍 Singapore</div>
+    <div class="exp-item collapsible expanded fade-in">
+      <div class="exp-co-row">
+        <img class="co-logo" src="/forwardlabs.png" alt="Forward Labs" style="background:#0d9e8a"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#0d9e8a">F</span>
+        <div style="flex:1; min-width:0">
+          <div class="exp-title">Operations Specialist</div>
+          <div class="exp-company-line">
+            <span>Forward Labs Pte. Ltd.</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-period">Jan 2024 — Present</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-location">📍 Singapore</span>
+          </div>
         </div>
-        <div class="exp-period">Jan 2024 — Present</div>
+        <span class="exp-toggle">▾</span>
       </div>
-      <div class="highlight-card">
-        <div class="highlight-icon">🤖</div>
-        <div class="highlight-text"><strong>Bridging Operations & AI</strong> — Currently at the frontier of intelligent automation, testing and evaluating AI tools and API integrations to enhance operational efficiency and transform how logistics workflows are managed.</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Oversee daily sea, air, and land freight bookings for 80+ clients, ensuring timely and accurate deliveries across multiple modes.</li>
-        <li>Test and evaluate AI tools and API integrations, providing structured feedback to enhance operational efficiency.</li>
-        <li>Analyse client business processes end-to-end, identifying high-impact opportunities to integrate AI solutions for optimised performance.</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="exp-tag">Freight Operations</span>
-        <span class="exp-tag">AI Testing</span>
-        <span class="exp-tag">API Integrations</span>
-        <span class="exp-tag">Prompt Engineering</span>
-        <span class="exp-tag">Process Analysis</span>
-        <span class="exp-tag">Client Management</span>
+      <div class="exp-body">
+        <div class="highlight-card">
+          <div class="highlight-icon">🤖</div>
+          <div class="highlight-text"><strong>Bridging Operations & AI</strong> — Currently at the frontier of intelligent automation, testing and evaluating AI tools and API integrations to enhance operational efficiency and transform how logistics workflows are managed.</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Oversee daily sea, air, and land freight bookings for 80+ clients, ensuring timely and accurate deliveries across multiple modes.</li>
+          <li>Test and evaluate AI tools and API integrations, providing structured feedback to enhance operational efficiency.</li>
+          <li>Analyse client business processes end-to-end, identifying high-impact opportunities to integrate AI solutions for optimised performance.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Freight Operations</span>
+          <span class="exp-tag">AI Testing</span>
+          <span class="exp-tag">API Integrations</span>
+          <span class="exp-tag">Prompt Engineering</span>
+          <span class="exp-tag">Process Analysis</span>
+          <span class="exp-tag">Client Management</span>
+        </div>
       </div>
     </div>
 
     <!-- Secretlab -->
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="/secretlab.png" alt="Secretlab" style="background:#e63946" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:40px;height:40px;background:#e63946;border-radius:8px;border:1px solid var(--border)">S</span><div><div class="exp-title">Regional Support Associate — Freight</div>
-          <div class="exp-company">Secretlab SG Pte. Ltd.</div></div></div>
-          <div class="exp-location">📍 Singapore</div>
+    <div class="exp-item collapsible fade-in">
+      <div class="exp-co-row">
+        <img class="co-logo" src="/secretlab.png" alt="Secretlab" style="background:#e63946"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#e63946">S</span>
+        <div style="flex:1; min-width:0">
+          <div class="exp-title">Regional Support Associate — Freight</div>
+          <div class="exp-company-line">
+            <span>Secretlab SG Pte. Ltd.</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-period">Oct 2021 — May 2022</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-location">📍 Singapore</span>
+          </div>
         </div>
-        <div class="exp-period">Oct 2021 — May 2022</div>
+        <span class="exp-toggle">▾</span>
       </div>
-      <ul class="exp-bullets">
-        <li>Monitored and updated shipment statuses for containers bound for North America, ensuring real-time visibility.</li>
-        <li>Prepared and validated invoices, packing lists, and customs documents for 5–20 containers daily.</li>
-        <li>Generated Advance Shipping Notices (ASNs) for third-party logistics providers to streamline incoming shipments.</li>
-        <li>Verified freight invoices and managed import and GST bonds for the Canada region.</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="exp-tag">North America Freight</span>
-        <span class="exp-tag">Customs Documentation</span>
-        <span class="exp-tag">ASN Generation</span>
-        <span class="exp-tag">GST Bonds</span>
-        <span class="exp-tag">Invoice Verification</span>
-        <span class="exp-tag">3PL</span>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Monitored and updated shipment statuses for containers bound for North America, ensuring real-time visibility.</li>
+          <li>Prepared and validated invoices, packing lists, and customs documents for 5–20 containers daily.</li>
+          <li>Generated Advance Shipping Notices (ASNs) for third-party logistics providers to streamline incoming shipments.</li>
+          <li>Verified freight invoices and managed import and GST bonds for the Canada region.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">North America Freight</span>
+          <span class="exp-tag">Customs Documentation</span>
+          <span class="exp-tag">ASN Generation</span>
+          <span class="exp-tag">GST Bonds</span>
+          <span class="exp-tag">Invoice Verification</span>
+          <span class="exp-tag">3PL</span>
+        </div>
       </div>
     </div>
 
     <!-- Heinemann -->
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="/heinemann.png" alt="Heinemann" style="background:#1a3a5c" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:40px;height:40px;background:#1a3a5c;border-radius:8px;border:1px solid var(--border)">H</span><div><div class="exp-title">Logistics Officer — Inbound</div>
-          <div class="exp-company">Heinemann Asia-Pacific Pte. Ltd.</div></div></div>
-          <div class="exp-location">📍 Singapore</div>
+    <div class="exp-item collapsible expanded fade-in">
+      <div class="exp-co-row">
+        <img class="co-logo" src="/heinemann.png" alt="Heinemann" style="background:#1a3a5c"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#1a3a5c">H</span>
+        <div style="flex:1; min-width:0">
+          <div class="exp-title">Logistics Officer — Inbound</div>
+          <div class="exp-company-line">
+            <span>Heinemann Asia-Pacific Pte. Ltd.</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-period">Dec 2017 — Sep 2021</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-location">📍 Singapore</span>
+          </div>
         </div>
-        <div class="exp-period">Dec 2017 — Sep 2021</div>
+        <span class="exp-toggle">▾</span>
       </div>
-      <div class="highlight-card">
-        <div class="highlight-icon">📦</div>
-        <div class="highlight-text"><strong>Enterprise Scale</strong> — Managed inbound logistics for <strong>100+ suppliers</strong> with over <strong>10,000 products</strong>, ensuring compliance with 3PL KPIs and resolving complex supply chain discrepancies.</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Supervised local and international shipments, processing documentation for 100+ suppliers with 10,000+ products.</li>
-        <li>Created ASNs and ensured full compliance with inbound KPIs for third-party logistics providers.</li>
-        <li>Resolved discrepancies in received goods including shortages, damages, and incorrect packaging.</li>
-        <li>Coordinated stock transfers and conducted bi-annual destruction and return-to-vendor processes.</li>
-        <li>Assisted with warehouse batch code checks and annual inventory audits.</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="exp-tag">Inbound Logistics</span>
-        <span class="exp-tag">Supplier Management</span>
-        <span class="exp-tag">ASN</span>
-        <span class="exp-tag">KPI Compliance</span>
-        <span class="exp-tag">Discrepancy Resolution</span>
-        <span class="exp-tag">Inventory Audit</span>
-        <span class="exp-tag">Stock Transfers</span>
+      <div class="exp-body">
+        <div class="highlight-card">
+          <div class="highlight-icon">📦</div>
+          <div class="highlight-text"><strong>Enterprise Scale</strong> — Managed inbound logistics for <strong>100+ suppliers</strong> with over <strong>10,000 products</strong>, ensuring compliance with 3PL KPIs and resolving complex supply chain discrepancies.</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Supervised local and international shipments, processing documentation for 100+ suppliers with 10,000+ products.</li>
+          <li>Created ASNs and ensured full compliance with inbound KPIs for third-party logistics providers.</li>
+          <li>Resolved discrepancies in received goods including shortages, damages, and incorrect packaging.</li>
+          <li>Coordinated stock transfers and conducted bi-annual destruction and return-to-vendor processes.</li>
+          <li>Assisted with warehouse batch code checks and annual inventory audits.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Inbound Logistics</span>
+          <span class="exp-tag">Supplier Management</span>
+          <span class="exp-tag">ASN</span>
+          <span class="exp-tag">KPI Compliance</span>
+          <span class="exp-tag">Discrepancy Resolution</span>
+          <span class="exp-tag">Inventory Audit</span>
+          <span class="exp-tag">Stock Transfers</span>
+        </div>
       </div>
     </div>
 
     <!-- Ryder-Ascent Senior -->
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="/ryderascent.png" alt="Ryder-Ascent" style="background:#2d6a4f" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:40px;height:40px;background:#2d6a4f;border-radius:8px;border:1px solid var(--border)">R</span><div><div class="exp-title">Senior Customer Service Officer</div>
-          <div class="exp-company">Ryder-Ascent Logistics Pte. Ltd.</div></div></div>
-          <div class="exp-location">📍 Singapore</div>
+    <div class="exp-item collapsible fade-in">
+      <div class="exp-co-row">
+        <img class="co-logo" src="/ryderascent.png" alt="Ryder-Ascent" style="background:#2d6a4f"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#2d6a4f">R</span>
+        <div style="flex:1; min-width:0">
+          <div class="exp-title">Senior Customer Service Officer</div>
+          <div class="exp-company-line">
+            <span>Ryder-Ascent Logistics Pte. Ltd.</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-period">Dec 2012 — Feb 2016</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-location">📍 Singapore</span>
+          </div>
         </div>
-        <div class="exp-period">Dec 2012 — Feb 2016</div>
+        <span class="exp-toggle">▾</span>
       </div>
-      <ul class="exp-bullets">
-        <li>Handled order backlogs, urgent requests, and transportation for a global software company's supply chain.</li>
-        <li>Managed daily SAP inventory adjustments aligned with production schedules.</li>
-        <li>Facilitated reverse logistics, addressing customer retention through hardware scrap practices.</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="exp-tag">SAP</span>
-        <span class="exp-tag">Supply Chain</span>
-        <span class="exp-tag">Reverse Logistics</span>
-        <span class="exp-tag">Order Management</span>
-        <span class="exp-tag">Customer Retention</span>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Handled order backlogs, urgent requests, and transportation for a global software company's supply chain.</li>
+          <li>Managed daily SAP inventory adjustments aligned with production schedules.</li>
+          <li>Facilitated reverse logistics, addressing customer retention through hardware scrap practices.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">SAP</span>
+          <span class="exp-tag">Supply Chain</span>
+          <span class="exp-tag">Reverse Logistics</span>
+          <span class="exp-tag">Order Management</span>
+          <span class="exp-tag">Customer Retention</span>
+        </div>
       </div>
     </div>
 
     <!-- Pentagon -->
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-left"><div class="exp-co-row"><img class="co-logo" src="/pentagon.png" alt="Pentagon" style="background:#4a4e69" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:40px;height:40px;background:#4a4e69;border-radius:8px;border:1px solid var(--border)">P</span><div><div class="exp-title">Logistics Executive</div>
-          <div class="exp-company">Pentagon Freight Services Pte. Ltd.</div></div></div>
-          <div class="exp-location">📍 Singapore</div>
+    <div class="exp-item collapsible fade-in">
+      <div class="exp-co-row">
+        <img class="co-logo" src="/pentagon.png" alt="Pentagon" style="background:#4a4e69"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#4a4e69">P</span>
+        <div style="flex:1; min-width:0">
+          <div class="exp-title">Logistics Executive</div>
+          <div class="exp-company-line">
+            <span>Pentagon Freight Services Pte. Ltd.</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-period">May 2012 — Dec 2012</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-location">📍 Singapore</span>
+          </div>
         </div>
-        <div class="exp-period">May 2012 — Dec 2012</div>
+        <span class="exp-toggle">▾</span>
       </div>
-      <ul class="exp-bullets">
-        <li>Coordinated import/export shipments for oil and gas clients, ensuring accurate documentation and timely delivery.</li>
-        <li>Prepared quotations and managed daily billing to drive revenue growth.</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="exp-tag">Oil & Gas</span>
-        <span class="exp-tag">Import/Export</span>
-        <span class="exp-tag">Freight Billing</span>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Coordinated import/export shipments for oil and gas clients, ensuring accurate documentation and timely delivery.</li>
+          <li>Prepared quotations and managed daily billing to drive revenue growth.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Oil & Gas</span>
+          <span class="exp-tag">Import/Export</span>
+          <span class="exp-tag">Freight Billing</span>
+        </div>
       </div>
     </div>
 
     <!-- Ryder-Ascent CSO -->
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div>
+    <div class="exp-item collapsible fade-in">
+      <div class="exp-co-row">
+        <img class="co-logo" src="/ryderascent.png" alt="Ryder-Ascent" style="background:#2d6a4f"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#2d6a4f">R</span>
+        <div style="flex:1; min-width:0">
           <div class="exp-title">Customer Service Officer — Import</div>
-          <div class="exp-company">Ryder-Ascent Logistics Pte. Ltd.</div>
-          <div class="exp-location">📍 Singapore</div>
+          <div class="exp-company-line">
+            <span>Ryder-Ascent Logistics Pte. Ltd.</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-period">Apr 2010 — Apr 2012</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-location">📍 Singapore</span>
+          </div>
         </div>
-        <div class="exp-period">Apr 2010 — Apr 2012</div>
+        <span class="exp-toggle">▾</span>
       </div>
-      <ul class="exp-bullets">
-        <li>Managed import shipments, customs clearances, and local truck deliveries end-to-end.</li>
-        <li>Monitored inventory and prepared monthly GST, storage, and clearance billings.</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="exp-tag">Import Shipments</span>
-        <span class="exp-tag">Customs Clearance</span>
-        <span class="exp-tag">GST Billing</span>
-        <span class="exp-tag">Inventory Monitoring</span>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Managed import shipments, customs clearances, and local truck deliveries end-to-end.</li>
+          <li>Monitored inventory and prepared monthly GST, storage, and clearance billings.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Import Shipments</span>
+          <span class="exp-tag">Customs Clearance</span>
+          <span class="exp-tag">GST Billing</span>
+          <span class="exp-tag">Inventory Monitoring</span>
+        </div>
       </div>
     </div>
 
     <!-- Earlier roles condensed -->
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-left"><div class="exp-co-row exp-co-multi">
-            <img class="co-logo" src="/xiahe.png" alt="Xiahe Porcelain" style="background:#8b5e3c" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:32px;height:32px;background:#8b5e3c;border-radius:8px;border:1px solid var(--border);font-size:11px">X</span>
-            <img class="co-logo" src="/hsr.png" alt="HSR International" style="background:#2c3e50" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:32px;height:32px;background:#2c3e50;border-radius:8px;border:1px solid var(--border);font-size:11px">H</span>
-            <img class="co-logo" src="/accenture.png" alt="Accenture Philippines" style="background:#a100ff" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-init" style="display:none;width:32px;height:32px;background:#a100ff;border-radius:8px;border:1px solid var(--border);font-size:11px">A</span>
-            <div>
+    <div class="exp-item collapsible fade-in">
+      <div class="exp-co-row exp-co-multi">
+        <img class="co-logo" src="/xiahe.png" alt="Xiahe Porcelain" style="background:#8b5e3c"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#8b5e3c">X</span>
+        <img class="co-logo" src="/hsr.png" alt="HSR International" style="background:#2c3e50"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#2c3e50">H</span>
+        <img class="co-logo" src="/accenture.png" alt="Accenture Philippines" style="background:#a100ff"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-init" style="display:none;background:#a100ff">A</span>
+        <div style="flex:1; min-width:0; margin-left:6px">
           <div class="exp-title">Earlier Roles</div>
-          <div class="exp-company">Xiahe Porcelain · HSR International Realtors · Accenture Philippines</div>
-</div></div></div>
-        <div class="exp-period">2007 — 2010</div>
+          <div class="exp-company-line">
+            <span>Xiahe Porcelain · HSR International · Accenture Philippines</span>
+            <span class="exp-sep">|</span>
+            <span class="exp-period">2007 — 2010</span>
+          </div>
+        </div>
+        <span class="exp-toggle">▾</span>
       </div>
-      <p class="exp-desc">
-        Built a diverse foundation across administration, HR, and real estate support. At Accenture Philippines, coordinated 20+ employee workshops monthly, managed logistics for events attended by 2,000+ employees, and negotiated with vendors to maximize project budgets. Developed strong stakeholder management, event coordination, and administrative systems skills.
-      </p>
-      <div class="exp-tags">
-        <span class="exp-tag">HR Coordination</span>
-        <span class="exp-tag">Event Logistics</span>
-        <span class="exp-tag">Vendor Negotiation</span>
-        <span class="exp-tag">Administration</span>
-        <span class="exp-tag">Database Management</span>
+      <div class="exp-body">
+        <p class="exp-desc">
+          Built a diverse foundation across administration, HR, and real estate support. At Accenture Philippines, coordinated 20+ employee workshops monthly, managed logistics for events attended by 2,000+ employees, and negotiated with vendors to maximize project budgets. Developed strong stakeholder management, event coordination, and administrative systems skills.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">HR Coordination</span>
+          <span class="exp-tag">Event Logistics</span>
+          <span class="exp-tag">Vendor Negotiation</span>
+          <span class="exp-tag">Administration</span>
+          <span class="exp-tag">Database Management</span>
+        </div>
       </div>
     </div>
 
@@ -861,6 +1020,14 @@ const secObserver = new IntersectionObserver(entries => {
   });
 }, { rootMargin:'-40% 0px -40% 0px' });
 document.querySelectorAll('section[id]').forEach(s => secObserver.observe(s));
+
+// ── COLLAPSIBLE EXPERIENCE ITEMS ──
+document.querySelectorAll('.exp-item.collapsible .exp-co-row').forEach(row => {
+  row.addEventListener('click', (e) => {
+    if (e.target.closest('a, button')) return;
+    row.parentElement.classList.toggle('expanded');
+  });
+});
 </script>
 </body>
 </html>
