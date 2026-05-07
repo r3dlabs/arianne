@@ -4553,9 +4553,11 @@ function createStreamingBubble(name, isSynthesis = false) {
         svgNode.classList.add('active');
         svgLine.classList.remove('active-consult');
         svgLine.classList.add('active-response', 'staff-' + key);
+        setDotActive(key);
     } else if (isSynthesis && svgNode) {
         // COS synthesising: node glows, all staff lines already animating
         svgNode.classList.add('active');
+        setDotActive(key);
     }
 
     function onChunk(chunk) {
