@@ -281,22 +281,43 @@ section { padding:96px 80px; }
   cursor:pointer;
   user-select:none;
 }
-.exp-toggle {
-  margin-left:auto;
-  font-family:var(--font-mono); font-size:14px;
-  color:var(--muted);
-  width:24px; height:24px;
-  display:flex; align-items:center; justify-content:center;
-  border-radius:4px;
-  transition:transform .25s, color .2s, background .2s;
-  flex-shrink:0;
+/* Title row: title + toggle pill side-by-side */
+.exp-title-row {
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
 }
-.exp-item.collapsible .exp-co-row:hover .exp-toggle {
+.exp-toggle {
+  font-family:var(--font-mono); font-size:11px; font-weight:500;
+  letter-spacing:.5px;
   color:var(--accent);
   background:var(--accent-light);
+  border:1px solid rgba(13,158,138,.3);
+  height:22px; padding:0 9px;
+  display:inline-flex; align-items:center; gap:5px;
+  border-radius:11px;
+  transition:background .2s, color .2s, border-color .2s;
+  flex-shrink:0;
+  text-transform:uppercase;
 }
-.exp-item.collapsible.expanded .exp-toggle {
-  transform:rotate(180deg);
+.exp-toggle::before {
+  content:'+';
+  font-size:14px; font-weight:600;
+  line-height:1;
+  display:inline-block;
+  transition:transform .25s;
+}
+.exp-item.collapsible.expanded .exp-toggle::before {
+  content:'−';
+}
+.exp-toggle .exp-toggle-label::after {
+  content:'View';
+}
+.exp-item.collapsible.expanded .exp-toggle .exp-toggle-label::after {
+  content:'Hide';
+}
+.exp-item.collapsible .exp-co-row:hover .exp-toggle {
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
 }
 .exp-body {
   overflow:hidden;
@@ -574,7 +595,7 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#e60012">3M</span>
         <div style="flex:1; min-width:0">
-          <div class="exp-title">Intercompany Analyst</div>
+          <div class="exp-title-row"><div class="exp-title">Intercompany Analyst</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>3M</span>
             <span class="exp-sep">|</span>
@@ -583,7 +604,6 @@ footer {
             <span class="exp-location">📍 Singapore</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <ul class="exp-bullets">
@@ -608,7 +628,7 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#0d9e8a">F</span>
         <div style="flex:1; min-width:0">
-          <div class="exp-title">Operations Specialist</div>
+          <div class="exp-title-row"><div class="exp-title">Operations Specialist</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>Forward Labs Pte. Ltd.</span>
             <span class="exp-sep">|</span>
@@ -617,7 +637,6 @@ footer {
             <span class="exp-location">📍 Singapore</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <div class="highlight-card">
@@ -647,7 +666,7 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#e63946">S</span>
         <div style="flex:1; min-width:0">
-          <div class="exp-title">Regional Support Associate — Freight</div>
+          <div class="exp-title-row"><div class="exp-title">Regional Support Associate — Freight</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>Secretlab SG Pte. Ltd.</span>
             <span class="exp-sep">|</span>
@@ -656,7 +675,6 @@ footer {
             <span class="exp-location">📍 Singapore</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <ul class="exp-bullets">
@@ -683,7 +701,7 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#1a3a5c">H</span>
         <div style="flex:1; min-width:0">
-          <div class="exp-title">Logistics Officer — Inbound</div>
+          <div class="exp-title-row"><div class="exp-title">Logistics Officer — Inbound</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>Heinemann Asia-Pacific Pte. Ltd.</span>
             <span class="exp-sep">|</span>
@@ -692,7 +710,6 @@ footer {
             <span class="exp-location">📍 Singapore</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <div class="highlight-card">
@@ -725,7 +742,7 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#2d6a4f">R</span>
         <div style="flex:1; min-width:0">
-          <div class="exp-title">Senior Customer Service Officer</div>
+          <div class="exp-title-row"><div class="exp-title">Senior Customer Service Officer</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>Ryder-Ascent Logistics Pte. Ltd.</span>
             <span class="exp-sep">|</span>
@@ -734,7 +751,6 @@ footer {
             <span class="exp-location">📍 Singapore</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <ul class="exp-bullets">
@@ -759,7 +775,7 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#4a4e69">P</span>
         <div style="flex:1; min-width:0">
-          <div class="exp-title">Logistics Executive</div>
+          <div class="exp-title-row"><div class="exp-title">Logistics Executive</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>Pentagon Freight Services Pte. Ltd.</span>
             <span class="exp-sep">|</span>
@@ -768,7 +784,6 @@ footer {
             <span class="exp-location">📍 Singapore</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <ul class="exp-bullets">
@@ -790,7 +805,7 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#2d6a4f">R</span>
         <div style="flex:1; min-width:0">
-          <div class="exp-title">Customer Service Officer — Import</div>
+          <div class="exp-title-row"><div class="exp-title">Customer Service Officer — Import</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>Ryder-Ascent Logistics Pte. Ltd.</span>
             <span class="exp-sep">|</span>
@@ -799,7 +814,6 @@ footer {
             <span class="exp-location">📍 Singapore</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <ul class="exp-bullets">
@@ -828,14 +842,13 @@ footer {
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="logo-init" style="display:none;background:#a100ff">A</span>
         <div style="flex:1; min-width:0; margin-left:6px">
-          <div class="exp-title">Earlier Roles</div>
+          <div class="exp-title-row"><div class="exp-title">Earlier Roles</div><span class="exp-toggle"><span class="exp-toggle-label"></span></span></div>
           <div class="exp-company-line">
             <span>Xiahe Porcelain · HSR International · Accenture Philippines</span>
             <span class="exp-sep">|</span>
             <span class="exp-period">2007 — 2010</span>
           </div>
         </div>
-        <span class="exp-toggle">▾</span>
       </div>
       <div class="exp-body">
         <p class="exp-desc">
